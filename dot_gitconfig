@@ -1,0 +1,29 @@
+[user]
+	name = Liu Xiaochen
+	email = xiaochen.liu01@g.softbank.co.jp
+	signingkey = 7DBD6A02B0B33A25
+[core]
+	editor = nvim
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[gitbutler]
+	signCommits = true
+	aiModelProvider = ollama
+	aiOllamaModelName = llama3.1
+[alias]
+	pushf = push --force-with-lease --force-if-includes
+[fetch]
+	prune = true
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+	interactive = auto
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[diff]
+	tool = nvimdiff
