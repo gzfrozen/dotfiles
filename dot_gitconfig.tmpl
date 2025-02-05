@@ -1,11 +1,19 @@
 [user]
+{{- if eq .chezmoi.username "gzfrozen"}}
+	name = gzfrozen
+	email = gzliuxiaochen@gmail.com
+	signingkey = A39257B5795BFE47
+{{- else if eq .chezmoi.username "liux101"}}
 	name = Liu Xiaochen
 	email = xiaochen.liu01@g.softbank.co.jp
 	signingkey = 7DBD6A02B0B33A25
+{{end}}
 [core]
 	editor = nvim
 [commit]
 	gpgsign = true
+[tag]
+	gpgSign = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -20,10 +28,12 @@
 [fetch]
 	prune = true
 [credential]
-	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
 	interactive = auto
+{{- if eq .chezmoi.username "gzfrozen"}}
+{{- else if eq .chezmoi.username "liux101"}}
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+{{end}}
 [diff]
 	tool = nvimdiff
