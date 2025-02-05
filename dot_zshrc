@@ -10,6 +10,13 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# zsh auto-completion
+autoload -Uz compinit
+compinit
+
+# GPG Sign setting
+export GPG_TTY=$(tty)
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -59,7 +66,8 @@ alias nv=nvim
 alias nvimdiff="nvim -d"
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
@@ -71,7 +79,7 @@ alias ll="eza --icons --hyperlink --group-directories-first -l -h --git"
 
 # Created by `pipx` on 2024-04-25 06:32:00
 export PATH="$PATH:/Users/liux101/.local/bin"
-eval "$(register-python-argcomplete pipx)"
+# eval "$(register-python-argcomplete pipx)"
 
 # The fuck
 eval $(thefuck --alias)
@@ -91,3 +99,6 @@ function y() {
 
 # Lazygit
 alias lg=lazygit
+
+# Bitwarden SSH Agent
+export SSH_AUTH_SOCK=/Users/gzfrozen/.bitwarden-ssh-agent.sock
