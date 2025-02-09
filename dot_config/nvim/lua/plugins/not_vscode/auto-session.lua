@@ -11,6 +11,7 @@ return {
   ---@type AutoSession.Config
   opts = {
     suppress_dirs = { "~/", "~/repos", "~/Downloads", "/" },
+    bypass_save_filetypes = { "dashboard" },
     cwd_change_handling = true,
     post_cwd_changed_cmds = {
       function() -- example refreshing the lualine status line _after_ the cwd changes

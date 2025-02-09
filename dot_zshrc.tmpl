@@ -14,8 +14,9 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 autoload -Uz compinit
 compinit
 
-# GPG Sign setting
+# GPG Agent
 export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -102,3 +103,6 @@ alias lg=lazygit
 
 # Bitwarden SSH Agent
 export SSH_AUTH_SOCK=/Users/gzfrozen/.bitwarden-ssh-agent.sock
+
+# Gemini developer api key
+export GEMINI_API_KEY={{ (bitwarden "item" "gemini_api_key").notes }}

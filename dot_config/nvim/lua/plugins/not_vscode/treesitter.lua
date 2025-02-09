@@ -41,6 +41,7 @@ return {
         "graphql",
         "comment",
         "prisma",
+        "nix",
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
