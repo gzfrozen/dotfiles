@@ -14,8 +14,9 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 autoload -Uz compinit
 compinit
 
-# GPG Sign setting
+# GPG Agent
 export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
