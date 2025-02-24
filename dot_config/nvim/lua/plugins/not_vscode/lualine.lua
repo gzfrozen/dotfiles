@@ -26,6 +26,9 @@ return {
               "dapui_breakpoints",
               "dapui_watches",
               "dap-repl",
+              "Avante",
+              "AvanteSelectedFiles",
+              "AvanteInput",
             },
             winbar = {
               "dapui_hover",
