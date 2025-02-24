@@ -14,7 +14,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000
+sketchybar --bar position=top height=30 blur_radius=30 color=0x40000000
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -54,6 +54,7 @@ for monitor_id in "${monitors[@]}"; do
             background.height=20 \
             background.drawing=off \
             label="$sid" \
+            label.padding_right=12 \
             click_script="aerospace workspace $sid" \
             script="$CONFIG_DIR/plugins/aerospace.sh $sid"
   done

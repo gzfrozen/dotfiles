@@ -1,5 +1,5 @@
 theme = tokyonight
 font-family = "MesloLGS NF"
 font-size = 18
-window-decoration = "auto"
+macos-titlebar-style = hidden
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
