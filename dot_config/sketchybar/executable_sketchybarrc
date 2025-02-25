@@ -8,7 +8,7 @@
 source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
-ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are configured
+ITEM_DIR="$CONFIG_DIR/items" # Directory where the items are configured
 
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar.
@@ -41,6 +41,7 @@ sketchybar --default "${default[@]}"
 # Left
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/front_app.sh"
 
 ##### Adding Right Items #####
 # In the same way as the left items we can add items to the right side.
