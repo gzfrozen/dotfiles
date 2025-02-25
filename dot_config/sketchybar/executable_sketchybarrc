@@ -10,6 +10,9 @@ source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 ITEM_DIR="$CONFIG_DIR/items" # Directory where the items are configured
 
+# Add aerospace event to the event system
+sketchybar --add event aerospace_workspace_change
+
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar.
 # These are only some of the options available. For all options see:
