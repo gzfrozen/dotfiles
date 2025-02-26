@@ -3,11 +3,11 @@
 export WHITE=0xffffffff
 
 # -- Teal Scheme --
-export BAR_COLOR=0xff001f30
+export BAR_COLOR=0x80001f30
 export ITEM_BG_COLOR=0xff003547
-export ACCENT_COLOR=0xff2cf9ed
-export ICON_COLOR=$WHITE
-export LABEL_COLOR=$WHITE
+export ACCENT_COLOR=0xff3dc6c1
+export ICON_COLOR=0xffdfdfdf
+export LABEL_COLOR=$ICON_COLOR
 
 # -- Gray Scheme --
 # export BAR_COLOR=0xff101314

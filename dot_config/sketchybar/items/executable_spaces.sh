@@ -11,6 +11,7 @@ for monitor_id in "${monitors[@]}"; do
       --subscribe space.$sid aerospace_workspace_change \
       --set space.$sid \
             display=${monitors["$monitor_id"]}\
+            background.color=$ACCENT_COLOR \
             background.drawing=off \
             icon=$sid \
             label.font="sketchybar-app-font:Regular:16.0" \
