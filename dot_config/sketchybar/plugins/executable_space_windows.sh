@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$SENDER" = "space_windows_change" ] || [ "$SENDER" = "aerospace_workspace_change" ]; then
-  source "$CONFIG_DIR/plugins/icon_map.sh"
+  source "$CONFIG_DIR/plugins/icon_map.sh" # Loads the icon map
   for sid in $(aerospace list-workspaces --all); do
     apps="$(aerospace list-windows --workspace $sid --format "%{app-name}")"
     if [ "${apps}" == "" ]; then
