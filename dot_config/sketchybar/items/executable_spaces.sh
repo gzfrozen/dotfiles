@@ -13,6 +13,8 @@ for monitor_id in "${monitors[@]}"; do
             display=${monitors["$monitor_id"]}\
             background.color=$ACCENT_COLOR \
             background.drawing=off \
+            background.height=18 \
+            background.corner_radius=3 \
             icon=$sid \
             label.font="sketchybar-app-font:Regular:16.0" \
             label.padding_right=13 \
@@ -26,3 +28,5 @@ sketchybar --add item chevron left \
            --subscribe chevron space_windows_change \
            --subscribe chevron aerospace_workspace_change \
            --set chevron icon= icon.font="Hack Nerd Font:Regular:16.0" label.drawing=off background.drawing=off script="$CONFIG_DIR/plugins/space_windows.sh"
+
+sketchybar --add bracket spaces '/space\..*/'

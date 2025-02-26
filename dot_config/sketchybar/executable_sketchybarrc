@@ -57,6 +57,7 @@ source "$ITEM_DIR/clock.sh"
 source "$ITEM_DIR/input_source.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/battery.sh"
+sketchybar --add bracket right_items clock input_source volume battery
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
