@@ -7,7 +7,7 @@ return {
     -- add any opts here
     -- for example
     provider = "gemini",
-    model = "gemini-2.0-flash",
+    model = "gemini-2.0-flash-thinking-exp",
     timeout = 60000,
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -20,7 +20,7 @@ return {
     --- The below dependencies are optional,
     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-    "ibhagwan/fzf-lua", -- for file_selector provider fzf
+    -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
     "zbirenbaum/copilot.lua", -- for providers='copilot'
     {
