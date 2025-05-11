@@ -88,7 +88,10 @@ function y() {
 alias lg=lazygit
 
 # Bitwarden SSH Agent
-export SSH_AUTH_SOCK=/Users/{{ .chezmoi.hostname }}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
+export SSH_AUTH_SOCK=/Users/{{ .chezmoi.username }}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
 
 # Gemini developer api key
 export GEMINI_API_KEY={{ (bitwarden "item" "gemini_api_key").notes }}
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/{{ .chezmoi.username }}/.lmstudio/bin"
