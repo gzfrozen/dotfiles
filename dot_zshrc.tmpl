@@ -92,3 +92,6 @@ export SSH_AUTH_SOCK=/Users/{{ .chezmoi.hostname }}/Library/Containers/com.bitwa
 
 # Gemini developer api key
 export GEMINI_API_KEY={{ (bitwarden "item" "gemini_api_key").notes }}
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/{{ .chezmoi.hostname }}/.lmstudio/bin"
