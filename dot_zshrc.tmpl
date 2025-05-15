@@ -95,3 +95,9 @@ export GEMINI_API_KEY={{ (bitwarden "item" "gemini_api_key").notes }}
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/{{ .chezmoi.username }}/.lmstudio/bin"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/liux101/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
