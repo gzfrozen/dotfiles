@@ -6,9 +6,13 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "gemini",
-    model = "gemini-2.0-flash-thinking-exp",
+    provider = "copilot",
     timeout = 60000,
+    windows = {
+      input = {
+        height = 3,
+      },
+    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
