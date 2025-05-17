@@ -24,23 +24,6 @@ return {
         enabled = vim.g.have_nerd_font,
       },
       { "debugloop/telescope-undo.nvim" },
-      {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        config = function()
-          local harpoon = require("harpoon")
-          harpoon:setup({})
-          vim.keymap.set("n", "gh", function()
-            harpoon:list():add()
-          end, { desc = "Add file to [H]arpoon" })
-          vim.keymap.set("n", "<Tab>", function()
-            harpoon:list():next({ ui_nav_wrap = true })
-          end, { desc = "[T]oggle Harpoon" })
-          vim.keymap.set("n", "<S-Tab>", function()
-            harpoon:list():prev({ ui_nav_wrap = true })
-          end, { desc = "[T]oggle Harpoon reverse" })
-        end,
-      },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -127,59 +110,6 @@ return {
       pcall(require("telescope").load_extension, "noice")
       pcall(require("telescope").load_extension, "session-lens")
 
-      -- Create Harpoon picker
-      local conf = require("telescope.config").values
-      local harpoon = require("harpoon")
-
-      local function toggle_telescope(harpoon_files)
-        local file_paths = {}
-        for _, item in ipairs(harpoon_files.items) do
-          table.insert(file_paths, item.value)
-        end
-
-        local make_finder = function()
-          local paths = {}
-          for _, item in ipairs(harpoon_files.items) do
-            table.insert(paths, item.value)
-          end
-
-          return require("telescope.finders").new_table({
-            results = paths,
-          })
-        end
-
-        local remove_at = function(prompt_buffer_number)
-          local state = require("telescope.actions.state")
-          local selected_entry = state.get_selected_entry()
-          local current_picker = state.get_current_picker(prompt_buffer_number)
-
-          harpoon:list():remove_at(selected_entry.index)
-          current_picker:refresh(make_finder())
-        end
-
-        require("telescope.pickers")
-          .new({ initial_mode = "normal" }, {
-            prompt_title = "Harpoon",
-            finder = make_finder(),
-            previewer = conf.file_previewer({}),
-            sorter = conf.generic_sorter({}),
-            attach_mappings = function(_, map)
-              map(
-                "n",
-                "d", -- your mapping here
-                remove_at
-              )
-              map(
-                "i",
-                "<C-d>", -- your mapping here
-                remove_at
-              )
-              return true
-            end,
-          })
-          :find()
-      end
-
       -- See `:help telescope.builtin`
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader>sH", builtin.help_tags, {
@@ -218,9 +148,6 @@ return {
       vim.keymap.set("n", "<leader>su", "<CMD>Telescope undo<CR>", {
         desc = "[S]earch [U]ndo",
       })
-      vim.keymap.set("n", "<leader>sh", function()
-        toggle_telescope(require("harpoon"):list())
-      end, { desc = "[S]earch Files added to [h]arpoon" })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set("n", "<leader>/", function()
