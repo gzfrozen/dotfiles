@@ -7,7 +7,7 @@ return {
       harpoon:setup({})
       vim.keymap.set("n", "<leader>sh", function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
-      end)
+      end, { desc = "Open [H]arpoon list" })
       vim.keymap.set("n", "gh", function()
         harpoon:list():add()
       end, { desc = "Add file to [H]arpoon" })
