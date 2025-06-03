@@ -236,7 +236,6 @@ return {
             },
           },
         },
-        volar = {},
         prismals = {},
         --
         csharp_ls = {},
