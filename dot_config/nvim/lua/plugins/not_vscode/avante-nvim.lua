@@ -6,6 +6,11 @@ return {
     -- add any opts here
     -- for example
     provider = "copilot",
+    providers = {
+      copilot = {
+        model = "claude-sonnet-4",
+      },
+    },
     timeout = 60000,
     windows = {
       input = {
