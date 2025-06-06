@@ -76,7 +76,7 @@ automatically-unhide-macos-hidden-apps = false
     inner.vertical =   10
     outer.left =       10
     outer.bottom =     10
-    outer.top =        40
+    outer.top =        [{ monitor.built-in = 20}, 40 ]
     outer.right =      10
 
 [workspace-to-monitor-force-assignment]
@@ -88,6 +88,10 @@ automatically-unhide-macos-hidden-apps = false
     B = 'secondary'
     C = 'secondary'
     D = 'secondary'
+    Q = 'built-in'
+    W = 'built-in'
+    E = 'built-in'
+    R = 'built-in'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -150,16 +154,24 @@ automatically-unhide-macos-hidden-apps = false
     alt-b = 'workspace B'
     alt-c = 'workspace C'
     alt-d = 'workspace D'
+    alt-q = 'workspace Q' # In your config, you can drop workspace bindings that you don't need
+    alt-w = 'workspace W'
+    alt-e = 'workspace E'
+    alt-r = 'workspace R'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-    alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
-    alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
-    alt-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
-    alt-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
-    alt-shift-a = 'move-node-to-workspace A --focus-follows-window'
-    alt-shift-b = 'move-node-to-workspace B --focus-follows-window'
-    alt-shift-c = 'move-node-to-workspace C --focus-follows-window'
-    alt-shift-d = 'move-node-to-workspace D --focus-follows-window'
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-a = 'move-node-to-workspace A'
+    alt-shift-b = 'move-node-to-workspace B'
+    alt-shift-c = 'move-node-to-workspace C'
+    alt-shift-d = 'move-node-to-workspace D'
+    alt-shift-q = 'move-node-to-workspace Q'
+    alt-shift-w = 'move-node-to-workspace W'
+    alt-shift-e = 'move-node-to-workspace E'
+    alt-shift-r = 'move-node-to-workspace R'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
@@ -175,7 +187,7 @@ automatically-unhide-macos-hidden-apps = false
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-    esc = ['reload-config', 'mode main']
+    esc = ['reload-config', 'exec-and-forget sketchybar --reload', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
     f = ['fullscreen', 'mode main'] # Toggle fullscreen
     shift-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout

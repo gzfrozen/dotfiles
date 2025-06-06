@@ -1,16 +1,38 @@
 #!/bin/bash
 
-# declare -A monitors
-while IFS=" " read -r monitor_id display_id; do
-  monitors["$monitor_id"]="$display_id"
-done < <(aerospace list-monitors --format '%{monitor-id} %{monitor-appkit-nsscreen-screens-id}')
+declare -A monitors_id
+declare -A monitors_name
+while IFS="|" read -r monitor_name monitor_id display_id; do
+  # Trim whitespace from each field
+  monitor_name=$(echo "$monitor_name" | xargs)
+  monitor_id=$(echo "$monitor_id" | xargs)
+  display_id=$(echo "$display_id" | xargs)
+  
+  monitors_id["$monitor_id"]="$display_id"
+  monitors_name["$monitor_id"]="$monitor_name"
+done < <(aerospace list-monitors --format '%{monitor-name}|%{monitor-id}|%{monitor-appkit-nsscreen-screens-id}')
 
-for monitor_id in "${monitors[@]}"; do
+for monitor_id in "${!monitors_id[@]}"; do
+  monitor_name="${monitors_name[$monitor_id]}"
+  
   for sid in $(aerospace list-workspaces --monitor $monitor_id); do
+    # Filter workspaces based on monitor name
+    if [[ "$monitor_name" == "Built-in Retina Display" ]]; then
+      # For Built-in Retina Display, only allow Q, W, E, R
+      if [[ ! "$sid" =~ ^[QWER]$ ]]; then
+        continue
+      fi
+    else
+      # For other monitors, allow any except Q, W, E, R
+      if [[ "$sid" =~ ^[QWER]$ ]]; then
+        continue
+      fi
+    fi
+    
     sketchybar --add item space.$sid left \
       --subscribe space.$sid aerospace_workspace_change \
       --set space.$sid \
-            display=${monitors["$monitor_id"]}\
+            display=${monitors_id["$monitor_id"]}\
             background.color=$ACCENT_COLOR \
             background.drawing=off \
             background.height=18 \
