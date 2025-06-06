@@ -1,7 +1,5 @@
 #!/bin/bash
 
-declare -A monitors_id
-declare -A monitors_name
 while IFS="|" read -r monitor_name monitor_id display_id; do
   # Trim whitespace from each field
   monitor_name=$(echo "$monitor_name" | xargs)
