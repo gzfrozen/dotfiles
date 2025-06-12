@@ -165,7 +165,6 @@ return {
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -286,7 +285,12 @@ return {
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            server.capabilities = vim.tbl_deep_extend(
+              "force",
+              capabilities,
+              require("blink.cmp").get_lsp_capabilities(server.capabilities),
+              server.capabilities or {}
+            )
             server.on_attach = function(client, bufnr)
               if client.name == "ruff" or client.name == "tailwindcss" then
                 -- Disable hover in favor of Pyright
@@ -296,7 +300,7 @@ return {
                 require("nvim-navic").attach(client, bufnr)
               end
             end
-            require("lspconfig")[server_name].setup(server)
+            vim.lsp.config("server_name", server)
           end,
         },
       })
