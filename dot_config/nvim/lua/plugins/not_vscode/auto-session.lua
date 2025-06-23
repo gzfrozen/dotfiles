@@ -20,8 +20,7 @@ return {
     },
     session_lens = {
       load_on_setup = true,
-      theme_conf = { border = true },
-      previewer = false,
+      picker_opts = { border = true },
     },
   },
 }

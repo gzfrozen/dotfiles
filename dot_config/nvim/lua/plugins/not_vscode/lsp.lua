@@ -200,40 +200,40 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {
           init_options = {
-            plugins = {
-              {
-                name = "@vue/typescript-plugin",
-                location = vim.api.nvim_call_function("stdpath", { "data" })
-                  .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-                languages = {
-                  "javascript",
-                  "typescript",
-                  "javascriptreact",
-                  "typescriptreact",
-                  "vue",
-                },
-              },
-            },
+            -- plugins = {
+            --   {
+            --     name = "@vue/typescript-plugin",
+            --     location = vim.api.nvim_call_function("stdpath", { "data" })
+            --       .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+            --     languages = {
+            --       "javascript",
+            --       "typescript",
+            --       "javascriptreact",
+            --       "typescriptreact",
+            --       "vue",
+            --     },
+            --   },
+            -- },
           },
           filetypes = {
             "javascript",
             "typescript",
             "javascriptreact",
             "typescriptreact",
-            "vue",
+            -- "vue",
           },
-          commands = {
-            OrganizeImports = {
-              function()
-                local params = {
-                  command = "_typescript.organizeImports",
-                  arguments = { vim.api.nvim_buf_get_name(0) },
-                }
-                vim.lsp.buf.execute_command(params)
-              end,
-              description = "Organize imports of Typescript file.",
-            },
-          },
+          -- commands = {
+          --   OrganizeImports = {
+          --     function()
+          --       local params = {
+          --         command = "_typescript.organizeImports",
+          --         arguments = { vim.api.nvim_buf_get_name(0) },
+          --       }
+          --       vim.lsp.buf.execute_command(params)
+          --     end,
+          --     description = "Organize imports of Typescript file.",
+          --   },
+          -- },
         },
         prismals = {},
         --
