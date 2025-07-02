@@ -1,8 +1,3 @@
-vim.keymap.set("n", "<esc>", function()
-  vim.cmd("Noice dismiss")
-  vim.cmd.noh()
-end)
-
 vim.keymap.set("i", "jj", "<ESC>")
 vim.keymap.set("i", "っj", "<ESC>")
 
@@ -21,11 +16,20 @@ vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
 if not vim.g.vscode then
+  vim.keymap.set("n", "<esc>", function()
+    vim.cmd("Noice dismiss")
+    vim.cmd.noh()
+  end)
+
   -- Diagnostic keymaps
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {
+  vim.keymap.set("n", "[d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end, {
     desc = "Go to previous [D]iagnostic message",
   })
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, {
+  vim.keymap.set("n", "]d", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+  end, {
     desc = "Go to next [D]iagnostic message",
   })
   vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {
@@ -56,6 +60,10 @@ if not vim.g.vscode then
 end
 
 if vim.g.vscode then
+  vim.keymap.set("n", "<esc>", function()
+    vim.cmd.noh()
+  end)
+
   local vscode = require("vscode-neovim")
   vim.keymap.set({ "n", "x" }, "<Tab>", function()
     vscode.action("workbench.action.nextEditor")
