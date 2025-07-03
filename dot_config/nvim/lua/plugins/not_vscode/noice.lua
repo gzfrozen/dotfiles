@@ -22,7 +22,18 @@ return {
       {
         filter = {
           event = "msg_show",
-          find = "Hop",
+          any = {
+            { find = "Hop" },
+          },
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "notify",
+          any = {
+            { find = "No information available" },
+          },
         },
         opts = { skip = true },
       },
