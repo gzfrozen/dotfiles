@@ -28,12 +28,12 @@
 [fetch]
 	prune = true
 [credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
 	interactive = auto
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[diff]
+	tool = nvimdiff
 {{- if eq .chezmoi.username "gzfrozen"}}
 {{- else if eq .chezmoi.username "liux101"}}
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 {{end}}
-[diff]
-	tool = nvimdiff
