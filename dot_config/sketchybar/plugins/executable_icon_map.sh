@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 ### START-OF-ICON-MAP
 function __icon_map() {
