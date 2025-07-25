@@ -1,0 +1,71 @@
+# Starship prompt
+starship init fish | source
+enable_transience
+
+# GPG Agent
+set -gx GPG_TTY (tty)
+gpgconf --launch gpg-agent
+
+# bun
+set -gx BUN_INSTALL $HOME/.bun
+set -gx PATH $BUN_INSTALL/bin $PATH
+
+# rust
+set -gx PATH $HOME/.cargo/bin $PATH
+
+# Google Cloud SDK
+[ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; and source "$HOME/google-cloud-sdk/path.fish.inc"
+[ -f "$HOME/google-cloud-sdk/completion.fish.inc" ]; and source "$HOME/google-cloud-sdk/completion.fish.inc"
+
+# kubectl completions and aliases
+type -q kubectl; and kubectl completion fish | source
+alias k='kubectl'
+alias kn='kubectl config set-context --current --namespace'
+
+# terraform alias
+alias t='terraform'
+
+# Vim keybindings and custom 'jj' mapping
+fish_vi_key_bindings
+function fish_user_key_bindings
+    bind -M insert jj 'commandline -f vi-cmd-mode'
+end
+
+# Editor configuration
+set -gx EDITOR nvim
+set -gx VISUAL $EDITOR
+alias nv='nvim'
+alias nvimdiff='nvim -d'
+
+# fzf integration (requires fzf.fish plugin)
+fzf_configure_bindings
+
+# zoxide
+zoxide init --cmd cd fish | source
+
+# eza aliases
+alias ls='eza --icons --hyperlink --group-directories-first'
+alias ll='eza --icons --hyperlink --group-directories-first -l -h --git'
+
+# bat
+alias cat='bat --color=always'
+
+# thefuck integration
+thefuck --alias | source
+
+# yazi function (see ~/.config/fish/functions/y.fish for the full function)
+# alias for lazygit
+alias lg='lazygit'
+
+# Bitwarden SSH Agent
+set -gx SSH_AUTH_SOCK /Users/{{ .chezmoi.username }}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
+
+# Gemini developer api key
+set -gx GEMINI_API_KEY {{ (bitwarden "item" "gemini_api_key").notes }}
+
+# Tavily seach api key
+set -gx TAVILY_API_KEY {{ (bitwarden "item" "tavily_api_key").notes }}
+
+# Added by LM Studio CLI (lms)
+set -gx PATH "$PATH:/Users/{{ .chezmoi.username }}/.lmstudio/bin"
+

@@ -3,3 +3,4 @@ font-family = "MesloLGS NF"
 font-size = 18
 macos-titlebar-style = hidden
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
+shell-integration-features = sudo
