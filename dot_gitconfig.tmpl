@@ -4,9 +4,13 @@
 	email = gzliuxiaochen@gmail.com
 	signingkey = A39257B5795BFE47
 {{- else if eq .chezmoi.username "liux101"}}
-	name = Liu Xiaochen
-	email = xiaochen.liu01@g.softbank.co.jp
+	name = gzfrozen
+	email = gzliuxiaochen@gmail.com
 	signingkey = 7DBD6A02B0B33A25
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+	path = .gitconfig-github
+[includeIf "hasconfig:remote.*.url:https://softbank-sa@dev.azure.com/**"]
+	path = .gitconfig-azuredevops
 {{end}}
 [core]
 	editor = nvim
