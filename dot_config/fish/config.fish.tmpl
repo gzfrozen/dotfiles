@@ -15,7 +15,6 @@ set -gx PATH $HOME/.cargo/bin $PATH
 
 # Google Cloud SDK
 [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; and source "$HOME/google-cloud-sdk/path.fish.inc"
-[ -f "$HOME/google-cloud-sdk/completion.fish.inc" ]; and source "$HOME/google-cloud-sdk/completion.fish.inc"
 
 # kubectl completions and aliases
 type -q kubectl; and kubectl completion fish | source
