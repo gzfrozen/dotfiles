@@ -19,14 +19,12 @@ return {
         lua = { "stylua" },
         -- Conform can also run multiple formatters sequentially
         python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-        javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-        typescript = { "prettierd", "prettier", stop_after_first = true },
-        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-        json = { "prettierd", "prettier", stop_after_first = true },
-        html = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        json = { "prettierd" },
+        html = { "prettierd" },
         rust = { "rustfmt" },
       },
     },
