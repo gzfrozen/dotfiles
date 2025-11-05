@@ -319,6 +319,7 @@ return {
         "ruff",
         "prettierd",
         "eslint",
+        "eslint_d",
         "csharpier",
         "prismals",
       })
