@@ -108,7 +108,6 @@ return {
       pcall(require("telescope").load_extension, "undo")
       pcall(require("telescope").load_extension, "rest")
       pcall(require("telescope").load_extension, "noice")
-      pcall(require("telescope").load_extension, "session-lens")
 
       -- See `:help telescope.builtin`
       local builtin = require("telescope.builtin")
