@@ -6,8 +6,12 @@ return {
     { "folke/snacks.nvim" },
   },
   config = function()
+    ---@type opencode.Opts
     vim.g.opencode_opts = {
       -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on `opencode_opts`.
+      provider = {
+        enabled = "snacks",
+      },
     }
 
     -- Required for `vim.g.opencode_opts.auto_reload`.
@@ -15,8 +19,8 @@ return {
 
     -- Recommended/example keymaps.
     vim.keymap.set({ "n", "x" }, "<leader>oa", function()
-      require("opencode").ask("@this: ", { submit = true })
-    end, { desc = "Ask about this" })
+      require("opencode").prompt("@buffer")
+    end, { desc = "Add current buffer" })
     vim.keymap.set({ "n", "x" }, "<leader>os", function()
       require("opencode").select()
     end, { desc = "Select prompt" })
@@ -26,9 +30,6 @@ return {
     vim.keymap.set("n", "<leader>ot", function()
       require("opencode").toggle()
     end, { desc = "Toggle embedded" })
-    vim.keymap.set("n", "<leader>oc", function()
-      require("opencode").command()
-    end, { desc = "Select command" })
     vim.keymap.set("n", "<leader>on", function()
       require("opencode").command("session_new")
     end, { desc = "New session" })

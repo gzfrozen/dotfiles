@@ -13,8 +13,10 @@ set -gx PATH $BUN_INSTALL/bin $PATH
 # rust
 set -gx PATH $HOME/.cargo/bin $PATH
 
+{{- if eq .chezmoi.username "gzfrozen"}}
 # Google Cloud SDK
 [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; and source "$HOME/google-cloud-sdk/path.fish.inc"
+{{end}}
 
 # kubectl completions and aliases
 type -q kubectl; and kubectl completion fish | source
@@ -33,9 +35,6 @@ set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 alias nv='nvim'
 alias nvimdiff='nvim -d'
-
-# Avante zen_mode
-alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 
 # fzf integration (requires fzf.fish plugin)
 fzf_configure_bindings
