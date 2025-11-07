@@ -11,6 +11,8 @@
 	path = .gitconfig-github
 [includeIf "hasconfig:remote.*.url:https://softbank-sa@dev.azure.com/**"]
 	path = .gitconfig-azuredevops
+[includeIf "hasconfig:remote.*.url:https://**@code.ex.mobius.sbb-sys.info/**"]
+	path = .gitconfig-mobius
 {{end}}
 [core]
 	editor = nvim
