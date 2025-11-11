@@ -33,6 +33,11 @@ vim.opt.listchars = {
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
+vim.filetype.add({
+  extension = {
+    ['http'] = 'http',
+  },
+})
 
 -- For Auto-Session
 vim.opt.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
