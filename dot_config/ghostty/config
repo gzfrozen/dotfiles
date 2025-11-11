@@ -1,7 +1,7 @@
 theme = tokyonight
 font-family = "MesloLGS NF"
 font-family = "Source Han Code JP"
-font-size = 18
+font-size = 16
 macos-titlebar-style = hidden
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 shell-integration-features = sudo

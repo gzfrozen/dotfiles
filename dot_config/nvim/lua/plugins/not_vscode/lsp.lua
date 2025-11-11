@@ -18,14 +18,11 @@ return {
       {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
-        dependencies = { "justinsgithub/wezterm-types" },
         opts = {
           library = {
             -- Load luvit types when the `vim.uv` word is found
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-            -- Load the wezterm types when the `wezterm` module is required
-            -- Needs `justinsgithub/wezterm-types` to be installed
-            { path = "wezterm-types", mods = { "wezterm" } },
+            { path = "snacks.nvim", words = { "Snacks" } },
           },
         },
       },
