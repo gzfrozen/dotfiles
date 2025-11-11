@@ -10,9 +10,10 @@ return {
     bigfile = { enabled = true },
     dashboard = { enabled = true },
     -- explorer = { enabled = true },
+    terminal = { enabled = true },
     image = { enabled = true },
     indent = { enabled = true },
-    -- input = { enabled = true },
+    input = { enabled = true },
     picker = {
       enabled = true,
       win = {
@@ -24,7 +25,7 @@ return {
       },
     },
     -- notifier = { enabled = true },
-    -- quickfile = { enabled = true },
+    quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },
     -- statuscolumn = { enabled = true },
