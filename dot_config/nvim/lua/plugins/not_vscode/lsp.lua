@@ -25,6 +25,7 @@ return {
             { path = "snacks.nvim", words = { "Snacks" } },
             { path = "lazy.nvim", words = { "LazySpec", "LazyPlugin" } },
             { path = "yazi.nvim", words = { "YaziConfig" } },
+            { path = "flash.nvim", words = { "Flash" } },
           },
         },
       },

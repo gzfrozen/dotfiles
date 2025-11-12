@@ -15,12 +15,21 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     picker = {
-      enabled = true,
+      hidden = true,
+      ignored = true,
       win = {
         input = {
           keys = {
             ["<Esc>"] = { "close", mode = { "n" } },
+            ["H"] = { "toggle_hidden", mode = { "n" } },
+            ["I"] = { "toggle_ignored", mode = { "n" } },
           },
+        },
+      },
+      sources = {
+        files = {
+          hidden = true,
+          ignored = true,
         },
       },
     },

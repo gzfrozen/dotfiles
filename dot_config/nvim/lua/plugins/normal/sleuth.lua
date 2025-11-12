@@ -1,4 +1,4 @@
-return {{
-    'tpope/vim-sleuth',
-    event = 'VeryLazy'
-}}
+return {
+  "tpope/vim-sleuth",
+  event = "VeryLazy",
+}

@@ -21,15 +21,6 @@ return {
     routes = {
       {
         filter = {
-          event = "msg_show",
-          any = {
-            { find = "Hop" },
-          },
-        },
-        opts = { skip = true },
-      },
-      {
-        filter = {
           event = "notify",
           any = {
             { find = "No information available" },

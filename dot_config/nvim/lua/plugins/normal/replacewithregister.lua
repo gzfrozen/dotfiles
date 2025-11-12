@@ -1,4 +1,4 @@
-return {{
-    'vim-scripts/ReplaceWithRegister',
-    event = 'VeryLazy'
-}}
+return {
+  "vim-scripts/ReplaceWithRegister",
+  event = "VeryLazy",
+}
