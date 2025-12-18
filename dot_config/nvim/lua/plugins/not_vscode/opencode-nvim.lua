@@ -3,6 +3,7 @@ return {
   dependencies = {
     -- Recommended for `ask()` and `select()`.
     -- Required for `toggle()`.
+    ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
     { "folke/snacks.nvim" },
   },
   config = function()
@@ -18,9 +19,12 @@ return {
     vim.o.autoread = true
 
     -- Recommended/example keymaps.
-    vim.keymap.set({ "n", "x" }, "<leader>oa", function()
+    vim.keymap.set({ "n", "x" }, "<leader>ob", function()
       require("opencode").prompt("@buffer")
     end, { desc = "Add current buffer" })
+    vim.keymap.set({ "n", "x" }, "<leader>oa", function()
+      require("opencode").ask("@this: ", { submit = true })
+    end, { desc = "Add opencode" })
     vim.keymap.set({ "n", "x" }, "<leader>os", function()
       require("opencode").select()
     end, { desc = "Select prompt" })
