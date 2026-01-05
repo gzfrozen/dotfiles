@@ -84,14 +84,14 @@ automatically-unhide-macos-hidden-apps = false
     2 = 'main'
     3 = 'main'
     4 = 'main'
-    A = 'secondary'
-    B = 'secondary'
-    C = 'secondary'
-    D = 'secondary'
     Q = 'built-in'
     W = 'built-in'
     E = 'built-in'
     R = 'built-in'
+    A = ['secondary', 3, 2]
+    B = ['secondary', 3, 2]
+    C = ['secondary', 3, 2]
+    D = ['secondary', 3, 2]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

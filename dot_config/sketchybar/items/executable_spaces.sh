@@ -10,27 +10,78 @@ while IFS="|" read -r monitor_name monitor_id display_id; do
   monitors_name["$monitor_id"]="$monitor_name"
 done < <(aerospace list-monitors --format '%{monitor-name}|%{monitor-id}|%{monitor-appkit-nsscreen-screens-id}')
 
+# Find sketchybar arrangement-id for built-in display (DirectDisplayID=1)
+# Build complete display mapping using jq
+sketchybar_json=$(sketchybar --query displays)
+
+# Find arrangement-id for built-in display (DirectDisplayID=1)
+builtin_arrangement_id=$(echo "$sketchybar_json" | jq -r '.[] | select(.DirectDisplayID == 1) | ."arrangement-id"')
+
+# Get ordered list of external display arrangement-ids (excluding built-in)
+external_arrangement_ids=($(echo "$sketchybar_json" | jq -r '.[] | select(.DirectDisplayID != 1) | ."arrangement-id"'))
+
+# Build ordered list of external aerospace monitor-ids (excluding built-in)
+external_monitor_ids=()
+for mid in "${!monitors_name[@]}"; do
+  if [[ "${monitors_name[$mid]}" != "Built-in Retina Display" ]]; then
+    external_monitor_ids+=("$mid")
+  fi
+done
+
+# Sort external_monitor_ids to ensure consistent ordering
+IFS=$'\n' sorted_external_monitor_ids=($(sort <<<"${external_monitor_ids[*]}")); unset IFS
+
+# Create mapping: aerospace monitor_id -> sketchybar arrangement-id
+for i in "${!sorted_external_monitor_ids[@]}"; do
+  mid="${sorted_external_monitor_ids[$i]}"
+  if [[ $i -lt ${#external_arrangement_ids[@]} ]]; then
+    monitor_to_display["$mid"]="${external_arrangement_ids[$i]}"
+  fi
+done
+
+# Add built-in mapping
+for mid in "${!monitors_name[@]}"; do
+  if [[ "${monitors_name[$mid]}" == "Built-in Retina Display" ]]; then
+    monitor_to_display["$mid"]="$builtin_arrangement_id"
+  fi
+done
+
+# Detect if only built-in display is connected
+monitor_count=${#monitors_id[@]}
+builtin_only=false
+if [[ $monitor_count -eq 1 ]]; then
+  for mid in "${!monitors_name[@]}"; do
+    if [[ "${monitors_name[$mid]}" == "Built-in Retina Display" ]]; then
+      builtin_only=true
+    fi
+  done
+fi
+
 for monitor_id in "${!monitors_id[@]}"; do
   monitor_name="${monitors_name[$monitor_id]}"
   
   for sid in $(aerospace list-workspaces --monitor $monitor_id); do
-    # Filter workspaces based on monitor name
-    if [[ "$monitor_name" == "Built-in Retina Display" ]]; then
-      # For Built-in Retina Display, only allow Q, W, E, R
-      if [[ ! "$sid" =~ ^[QWER]$ ]]; then
+    # Filter workspaces based on monitor configuration
+    if [[ "$builtin_only" == true ]]; then
+      # Only built-in display connected: only show 1, 2, 3, 4
+      if [[ ! "$sid" =~ ^[1234]$ ]]; then
         continue
       fi
     else
-      # For other monitors, allow any except Q, W, E, R
-      if [[ "$sid" =~ ^[QWER]$ ]]; then
+      # External monitors: never show Q, W, E, R (reserved for built-in)
+      if [[ "$monitor_name" != "Built-in Retina Display" && "$sid" =~ ^[QWER]$ ]]; then
         continue
       fi
     fi
+    # When external monitors exist, trust aerospace's workspace assignment
     
+    # Get mapped sketchybar display ID
+    target_display="${monitor_to_display[$monitor_id]}"
+
     sketchybar --add item space.$sid left \
       --subscribe space.$sid aerospace_workspace_change \
       --set space.$sid \
-            display=${monitors_id["$monitor_id"]}\
+            display=$target_display\
             background.color=$ACCENT_COLOR \
             background.drawing=off \
             background.height=18 \
