@@ -67,8 +67,13 @@ for monitor_id in "${!monitors_id[@]}"; do
       if [[ ! "$sid" =~ ^[1234]$ ]]; then
         continue
       fi
+    elif [[ $monitor_count -eq 2 ]]; then
+      # Two monitors (including built-in): hide QWER spaces entirely
+      if [[ "$sid" =~ ^[QWER]$ ]]; then
+        continue
+      fi
     else
-      # External monitors: never show Q, W, E, R (reserved for built-in)
+      # 3+ monitors: show Q, W, E, R only on built-in display
       if [[ "$monitor_name" != "Built-in Retina Display" && "$sid" =~ ^[QWER]$ ]]; then
         continue
       fi
