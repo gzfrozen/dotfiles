@@ -1,12 +1,3 @@
--- options
-require("options")
-
--- keymaps
-require("keymaps")
-
--- autocommands
-require("autocommands")
-
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -23,6 +14,15 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- options
+require("options")
+
+-- keymaps
+require("keymaps")
+
+-- autocommands
+require("autocommands")
 
 _NOT_VSCODE = not vim.g.vscode
 if _NOT_VSCODE then
