@@ -35,9 +35,16 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.filetype.add({
   extension = {
-    ['http'] = 'http',
+    ["http"] = "http",
   },
 })
 
 -- For Auto-Session
 vim.opt.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- For recognizing Dockerfiles
+vim.filetype.add({
+  pattern = {
+    ["Dockerfile.*"] = "dockerfile",
+  },
+})
