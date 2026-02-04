@@ -2,6 +2,14 @@ return {
   "zbirenbaum/copilot.lua",
   event = "InsertEnter",
   cmd = { "Copilot" },
+  dependencies = {
+    {
+      "copilotlsp-nvim/copilot-lsp",
+      config = function()
+        vim.g.copilot_nes_debounce = 500
+      end,
+    },
+  },
   opts = {
     panel = {
       enabled = false, -- disable the copilot panel
@@ -9,6 +17,14 @@ return {
     file_types = {
       yaml = true,
       markdown = true,
+    },
+    nes = {
+      enabled = true,
+      keymap = {
+        accept_and_goto = "<leader>p",
+        accept = false,
+        dismiss = "<Esc>",
+      },
     },
   },
   config = function(_, opts)
@@ -22,7 +38,7 @@ return {
       replace_keycodes = false,
     })
 
-    -- hide copilot suggestions when avante menu is open
+    -- hide copilot suggestions when blink menu is open
     vim.api.nvim_create_autocmd("User", {
       pattern = "BlinkCmpMenuOpen",
       callback = function()
