@@ -3,7 +3,7 @@ return {
   lazy = false,
   keys = {
     -- Will use Telescope if installed or a vim.ui.select picker otherwise
-    { "<leader>sS", "<cmd>AutoSession search<CR>", desc = "Session search" },
+    -- { "<leader>sS", "<cmd>AutoSession search<CR>", desc = "Session search" },
   },
 
   ---enables autocomplete for opts

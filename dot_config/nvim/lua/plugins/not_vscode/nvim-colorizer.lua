@@ -3,6 +3,17 @@ return {
     "catgoose/nvim-colorizer.lua",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
+      options = {
+        parsers = {
+          css = true,
+          css_fn = true,
+          tailwind = {
+            enable = true,
+            lsp = true,
+            update_names = true,
+          },
+        },
+      },
       filetypes = {
         "css",
         "javascript",
@@ -11,9 +22,6 @@ return {
         "typescriptreact",
         "html",
       },
-      user_default_options = { css = true, tailwind = "both", tailwind_opts = {
-        update_names = true,
-      } },
     },
   },
 }
