@@ -36,8 +36,10 @@
 [credential]
 	interactive = auto
 	helper = /usr/local/share/gcm-core/git-credential-manager
+[difftool "nvim_difftool"]
+  cmd = nvim -c \"packadd nvim.difftool\" -d \"$LOCAL\" \"$REMOTE\"
 [diff]
-	tool = nvimdiff
+  tool = nvim_difftool
 {{- if eq .chezmoi.username "gzfrozen"}}
 {{- else if eq .chezmoi.username "liux101"}}
 [credential "https://dev.azure.com"]

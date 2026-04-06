@@ -14,9 +14,8 @@ return {
     panel = {
       enabled = false, -- disable the copilot panel
     },
-    file_types = {
-      yaml = true,
-      markdown = true,
+    filetypes = {
+      ["*"] = true,
     },
     nes = {
       enabled = true,

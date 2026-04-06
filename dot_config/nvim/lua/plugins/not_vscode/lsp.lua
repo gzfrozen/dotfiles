@@ -240,7 +240,7 @@ return {
         --
         csharp_ls = {},
         lua_ls = {
-          version = "3.16.4",
+          -- version = "3.16.4",
           -- cmd = {...},
           -- filetypes = { ...},
           -- capabilities = {},
