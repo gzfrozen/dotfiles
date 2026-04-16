@@ -29,8 +29,6 @@ return {
           },
         },
       },
-      -- Allows extra capabilities provided by blink.cmp
-      "saghen/blink.cmp",
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -161,21 +159,6 @@ return {
         },
       })
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
-      --  Add any additional override configuration in the following tables. Available keys are:
-      --  - cmd (table): Override the default command used to start the server
-      --  - filetypes (table): Override the default list of associated filetypes for the server
-      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-      --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -240,10 +223,33 @@ return {
         --
         csharp_ls = {},
         lua_ls = {
-          -- version = "3.16.4",
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
+          on_init = function(client)
+            if client.workspace_folders then
+              local path = client.workspace_folders[1].name
+              if
+                path ~= vim.fn.stdpath("config")
+                and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+              then
+                return
+              end
+            end
+
+            client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+              runtime = {
+                version = "LuaJIT",
+                path = { "lua/?.lua", "lua/?/init.lua" },
+              },
+              workspace = {
+                checkThirdParty = false,
+                -- NOTE: this is a lot slower and will cause issues when working on your own configuration.
+                --  See https://github.com/neovim/nvim-lspconfig/issues/3189
+                library = vim.tbl_extend("force", vim.api.nvim_get_runtime_file("", true), {
+                  "${3rd}/luv/library",
+                  "${3rd}/busted/library",
+                }),
+              },
+            })
+          end,
           settings = {
             Lua = {
               completion = {
@@ -266,15 +272,7 @@ return {
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
-      local ensure_installed = {}
-      for server_name, server in pairs(servers) do
-        local config = { server_name }
-        if server.version then
-          config.version = server.version
-          config.auto_update = false
-        end
-        ensure_installed[#ensure_installed + 1] = config
-      end
+      local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         "stylua", -- Used to format Lua code
         "pyright",
@@ -285,39 +283,15 @@ return {
         "csharpier",
         "prismals",
       })
+
       require("mason-tool-installer").setup({
         ensure_installed = ensure_installed,
       })
 
-      require("mason-lspconfig").setup({
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend(
-              "force",
-              {},
-              capabilities,
-              -- require("blink.cmp").get_lsp_capabilities(server.capabilities),
-              server.capabilities or {}
-            )
-            server.on_attach = function(client, bufnr)
-              if client.name == "ruff" then
-                -- Disable hover in favor of Pyright
-                client.server_capabilities.hoverProvider = false
-              end
-              if client.server_capabilities.documentSymbolProvider then
-                require("nvim-navic").attach(client, bufnr)
-              end
-            end
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
-      })
+      for name, server in pairs(servers) do
+        vim.lsp.config(name, server)
+        vim.lsp.enable(name)
+      end
     end,
   },
 }
