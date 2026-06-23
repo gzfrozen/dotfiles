@@ -3,7 +3,6 @@ return {
   event = "VeryLazy",
   dependencies = {
     "mfussenegger/nvim-dap",
-    "nvim-treesitter/nvim-treesitter",
   },
   opts = {},
 }

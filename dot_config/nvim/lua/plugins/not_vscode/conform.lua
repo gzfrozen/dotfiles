@@ -13,15 +13,10 @@ local function organize_imports(bufnr)
     return
   end
 
-  local request_result = client:request_sync("workspace/executeCommand", {
+  client:request("workspace/executeCommand", {
     command = "_typescript.organizeImports",
     arguments = { vim.api.nvim_buf_get_name(bufnr) },
   })
-
-  if request_result and request_result.err then
-    vim.notify(request_result.err.message, vim.log.levels.ERROR)
-    return
-  end
 end
 
 return {
