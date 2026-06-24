@@ -53,6 +53,7 @@ return {
         css = { "prettierd" },
         rust = { "rustfmt" },
         fish = { "fish_indent" },
+        bash = { "shfmt" },
       },
     },
     keys = {

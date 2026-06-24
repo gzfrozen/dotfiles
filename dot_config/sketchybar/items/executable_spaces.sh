@@ -5,7 +5,6 @@ while IFS="|" read -r monitor_name monitor_id display_id; do
   monitor_name=$(echo "$monitor_name" | xargs)
   monitor_id=$(echo "$monitor_id" | xargs)
   display_id=$(echo "$display_id" | xargs)
-  
   monitors_id["$monitor_id"]="$display_id"
   monitors_name["$monitor_id"]="$monitor_name"
 done < <(aerospace list-monitors --format '%{monitor-name}|%{monitor-id}|%{monitor-appkit-nsscreen-screens-id}')
@@ -22,14 +21,21 @@ external_arrangement_ids=($(echo "$sketchybar_json" | jq -r '.[] | select(.Direc
 
 # Build ordered list of external aerospace monitor-ids (excluding built-in)
 external_monitor_ids=()
+builtin_exists=false
+builtin_monitor_id=""
+
 for mid in "${!monitors_name[@]}"; do
-  if [[ "${monitors_name[$mid]}" != "Built-in Retina Display" ]]; then
+  if [[ "${monitors_name[$mid]}" == "Built-in Retina Display" ]]; then
+    builtin_exists=true
+    builtin_monitor_id="$mid"
+  else
     external_monitor_ids+=("$mid")
   fi
 done
 
 # Sort external_monitor_ids to ensure consistent ordering
-IFS=$'\n' sorted_external_monitor_ids=($(sort <<<"${external_monitor_ids[*]}")); unset IFS
+IFS=$'\n' sorted_external_monitor_ids=($(sort <<<"${external_monitor_ids[*]}"))
+unset IFS
 
 # Create mapping: aerospace monitor_id -> sketchybar arrangement-id
 for i in "${!sorted_external_monitor_ids[@]}"; do
@@ -40,69 +46,76 @@ for i in "${!sorted_external_monitor_ids[@]}"; do
 done
 
 # Add built-in mapping
-for mid in "${!monitors_name[@]}"; do
-  if [[ "${monitors_name[$mid]}" == "Built-in Retina Display" ]]; then
-    monitor_to_display["$mid"]="$builtin_arrangement_id"
-  fi
-done
-
-# Detect if only built-in display is connected
-monitor_count=${#monitors_id[@]}
-builtin_only=false
-if [[ $monitor_count -eq 1 ]]; then
-  for mid in "${!monitors_name[@]}"; do
-    if [[ "${monitors_name[$mid]}" == "Built-in Retina Display" ]]; then
-      builtin_only=true
-    fi
-  done
+if [[ "$builtin_exists" == true && -n "$builtin_arrangement_id" ]]; then
+  monitor_to_display["$builtin_monitor_id"]="$builtin_arrangement_id"
 fi
+
+monitor_count=${#monitors_id[@]}
 
 for monitor_id in "${!monitors_id[@]}"; do
   monitor_name="${monitors_name[$monitor_id]}"
-  
-  for sid in $(aerospace list-workspaces --monitor $monitor_id); do
-    # Filter workspaces based on monitor configuration
-    if [[ "$builtin_only" == true ]]; then
-      # Only built-in display connected: only show 1, 2, 3, 4
-      if [[ ! "$sid" =~ ^[1234]$ ]]; then
-        continue
+  first_external="${sorted_external_monitor_ids[0]}"
+  second_external="${sorted_external_monitor_ids[1]}"
+
+  # Filter workspaces based on monitor configuration
+  for sid in $(aerospace list-workspaces --monitor "$monitor_id"); do
+    show_space=false
+
+    if [[ "$builtin_exists" == true && $monitor_count -eq 1 ]]; then
+      # MacBook only
+      [[ "$sid" =~ ^[1234]$ ]] && show_space=true
+
+    elif [[ "$builtin_exists" == true && $monitor_count -eq 2 ]]; then
+      # MacBook + one external
+      if [[ "$monitor_name" == "Built-in Retina Display" ]]; then
+        [[ "$sid" =~ ^[1234]$ ]] && show_space=true
+      else
+        [[ "$sid" =~ ^[ABCD]$ ]] && show_space=true
       fi
-    elif [[ $monitor_count -eq 2 ]]; then
-      # Two monitors (including built-in): hide QWER spaces entirely
-      if [[ "$sid" =~ ^[QWER]$ ]]; then
-        continue
+
+    elif [[ "$builtin_exists" == true && $monitor_count -ge 3 ]]; then
+      # MacBook + two or more externals
+      if [[ "$monitor_name" == "Built-in Retina Display" ]]; then
+        [[ "$sid" =~ ^[QWER]$ ]] && show_space=true
+      elif [[ "$monitor_id" == "$first_external" ]]; then
+        [[ "$sid" =~ ^[1234]$ ]] && show_space=true
+      elif [[ "$monitor_id" == "$second_external" ]]; then
+        [[ "$sid" =~ ^[ABCD]$ ]] && show_space=true
       fi
-    else
-      # 3+ monitors: show Q, W, E, R only on built-in display
-      if [[ "$monitor_name" != "Built-in Retina Display" && "$sid" =~ ^[QWER]$ ]]; then
-        continue
+
+    elif [[ "$builtin_exists" == false && $monitor_count -eq 2 ]]; then
+      # Mac mini + two externals
+      if [[ "$monitor_id" == "$first_external" ]]; then
+        [[ "$sid" =~ ^[1234]$ ]] && show_space=true
+      elif [[ "$monitor_id" == "$second_external" ]]; then
+        [[ "$sid" =~ ^[ABCD]$ ]] && show_space=true
       fi
     fi
-    # When external monitors exist, trust aerospace's workspace assignment
-    
+
+    [[ "$show_space" == true ]] || continue
+
     # Get mapped sketchybar display ID
     target_display="${monitor_to_display[$monitor_id]}"
 
     sketchybar --add item space.$sid left \
       --subscribe space.$sid aerospace_workspace_change \
       --set space.$sid \
-            display=$target_display\
-            background.color=$ACCENT_COLOR \
-            background.drawing=off \
-            background.height=18 \
-            background.corner_radius=3 \
-            icon=$sid \
-            label.font="sketchybar-app-font:Regular:16.0" \
-            label.padding_right=13 \
-            label.y_offset=-1 \
-            click_script="aerospace workspace $sid" \
-            script="$CONFIG_DIR/plugins/space.sh $sid"
+      display=$target_display background.color=$ACCENT_COLOR \
+      background.drawing=off \
+      background.height=18 \
+      background.corner_radius=3 \
+      icon=$sid \
+      label.font="sketchybar-app-font:Regular:16.0" \
+      label.padding_right=13 \
+      label.y_offset=-1 \
+      click_script="aerospace workspace $sid" \
+      script="$CONFIG_DIR/plugins/space.sh $sid"
   done
 done
 
 sketchybar --add item chevron left \
-           --subscribe chevron space_windows_change \
-           --subscribe chevron aerospace_workspace_change \
-           --set chevron icon= icon.font="Hack Nerd Font:Regular:16.0" label.drawing=off background.drawing=off script="$CONFIG_DIR/plugins/space_windows.sh"
+  --subscribe chevron space_windows_change \
+  --subscribe chevron aerospace_workspace_change \
+  --set chevron icon= icon.font="Hack Nerd Font:Regular:16.0" label.drawing=off background.drawing=off script="$CONFIG_DIR/plugins/space_windows.sh"
 
 sketchybar --add bracket spaces '/space\..*/'
