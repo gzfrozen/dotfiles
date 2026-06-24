@@ -9,17 +9,18 @@ while IFS="|" read -r monitor_name monitor_id display_id; do
   monitors_name["$monitor_id"]="$monitor_name"
 done < <(aerospace list-monitors --format '%{monitor-name}|%{monitor-id}|%{monitor-appkit-nsscreen-screens-id}')
 
-# Find sketchybar arrangement-id for built-in display (DirectDisplayID=1)
 # Build complete display mapping using jq
 sketchybar_json=$(sketchybar --query displays)
 
 # Find arrangement-id for built-in display (DirectDisplayID=1)
 builtin_arrangement_id=$(echo "$sketchybar_json" | jq -r '.[] | select(.DirectDisplayID == 1) | ."arrangement-id"')
 
-# Get ordered list of external display arrangement-ids (excluding built-in)
-external_arrangement_ids=($(echo "$sketchybar_json" | jq -r '.[] | select(.DirectDisplayID != 1) | ."arrangement-id"'))
+# Get ordered list of external display arrangement-ids (excluding built-in), sorted ascending
+external_arrangement_ids=($(echo "$sketchybar_json" | jq -r '.[] | select(.DirectDisplayID != 1) | ."arrangement-id"' | sort -n))
 
-# Build ordered list of external aerospace monitor-ids (excluding built-in)
+# Map each aerospace external monitor to its NSScreen/arrangement display id.
+# monitors_id[$mid] is the monitor-appkit-nsscreen-screens-id, which equals
+# sketchybar's arrangement-id. Use this as the single source of truth for ordering.
 external_monitor_ids=()
 builtin_exists=false
 builtin_monitor_id=""
@@ -33,16 +34,19 @@ for mid in "${!monitors_name[@]}"; do
   fi
 done
 
-# Sort external_monitor_ids to ensure consistent ordering
-IFS=$'\n' sorted_external_monitor_ids=($(sort <<<"${external_monitor_ids[*]}"))
-unset IFS
+# Sort external aerospace monitor-ids by their arrangement-id (physical order),
+# NOT by the raw monitor-id string.
+sorted_external_monitor_ids=($(
+  for mid in "${external_monitor_ids[@]}"; do
+    echo "${monitors_id[$mid]} $mid"
+  done | sort -n | awk '{print $2}'
+))
 
-# Create mapping: aerospace monitor_id -> sketchybar arrangement-id
+# Create mapping: aerospace monitor_id -> sketchybar arrangement-id.
+# Both lists are now ordered by arrangement-id, so indices line up.
 for i in "${!sorted_external_monitor_ids[@]}"; do
   mid="${sorted_external_monitor_ids[$i]}"
-  if [[ $i -lt ${#external_arrangement_ids[@]} ]]; then
-    monitor_to_display["$mid"]="${external_arrangement_ids[$i]}"
-  fi
+  monitor_to_display["$mid"]="${monitors_id[$mid]}"
 done
 
 # Add built-in mapping
@@ -50,6 +54,7 @@ if [[ "$builtin_exists" == true && -n "$builtin_arrangement_id" ]]; then
   monitor_to_display["$builtin_monitor_id"]="$builtin_arrangement_id"
 fi
 
+# Count only real, distinct monitors
 monitor_count=${#monitors_id[@]}
 
 for monitor_id in "${!monitors_id[@]}"; do
