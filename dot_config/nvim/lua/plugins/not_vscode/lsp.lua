@@ -227,6 +227,10 @@ return {
         --
         csharp_ls = {},
         lua_ls = {},
+        gopls = {
+          gofumpt = true, -- the only one tied to your explicit requirement
+        },
+        golangci_lint_ls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -245,10 +249,13 @@ return {
         "pyright",
         "ruff",
         "prettierd",
-        "eslint",
         "eslint_d",
+        "eslint-lsp",
         "csharpier",
         "prismals",
+        "gopls",
+        "golangci-lint",
+        "golangci_lint_ls",
       })
 
       require("mason-tool-installer").setup({

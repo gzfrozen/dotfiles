@@ -1,4 +1,4 @@
-local function organize_imports(bufnr)
+local function ts_organize_imports(bufnr)
   if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
     return
   end
@@ -17,6 +17,41 @@ local function organize_imports(bufnr)
     command = "_typescript.organizeImports",
     arguments = { vim.api.nvim_buf_get_name(bufnr) },
   })
+end
+
+local function go_organize_imports(bufnr)
+  local client = vim.lsp.get_clients({ name = "gopls", bufnr = bufnr })[1]
+  if not client then
+    return
+  end
+
+  -- Build params explicitly so we don't inject `context` into a typed table.
+  local params = {
+    textDocument = vim.lsp.util.make_text_document_params(bufnr),
+    range = {
+      start = { line = 0, character = 0 },
+      ["end"] = { line = 0, character = 0 },
+    },
+    context = { only = { "source.organizeImports" }, diagnostics = {} },
+  }
+
+  client:request("textDocument/codeAction", params, function(err, result)
+    if err or not result then
+      return
+    end
+    for _, action in pairs(result) do
+      if action.edit then
+        vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+      elseif action.command then
+        client:exec_cmd(action.command, { bufnr = bufnr })
+      end
+    end
+  end, bufnr)
+end
+
+local function organize_imports(bufnr)
+  ts_organize_imports(bufnr)
+  go_organize_imports(bufnr)
 end
 
 return {
@@ -54,6 +89,7 @@ return {
         rust = { "rustfmt" },
         fish = { "fish_indent" },
         bash = { "shfmt" },
+        go = { lsp_format = "fallback" },
       },
     },
     keys = {
