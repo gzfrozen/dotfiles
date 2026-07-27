@@ -226,9 +226,32 @@ return {
         prismals = {},
         --
         csharp_ls = {},
-        lua_ls = {},
+
+        -- Special Lua Config, as recommended by neovim help docs
+        lua_ls = {
+          on_init = function(client)
+            client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
+
+            if client.workspace_folders then
+              local path = client.workspace_folders[1].name
+              if
+                path ~= vim.fn.stdpath("config")
+                and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+              then
+                return
+              end
+            end
+          end,
+
+          ---@type lspconfig.settings.lua_ls
+          settings = {
+            Lua = {
+              format = { enable = false }, -- Disable formatting (formatting is done by stylua)
+            },
+          },
+        },
         gopls = {
-          gofumpt = true, -- the only one tied to your explicit requirement
+          gofumpt = true,
         },
         golangci_lint_ls = {},
       }
