@@ -9,7 +9,7 @@ function __icon_map() {
    "Acrobat")
         icon_result=":acrobat:"
         ;;
-   "Activity Monitor" | "Aktivitätsanzeige")
+   "Activity Monitor" | "Aktivitätsanzeige" | "Монітор активності" | "Монитор активности")
         icon_result=":activity_monitor:"
         ;;
    "aw-tauri")
@@ -17,6 +17,9 @@ function __icon_map() {
         ;;
    "Actual")
         icon_result=":actual:"
+        ;;
+   "AdGuard VPN")
+        icon_result=":adguard_vpn:"
         ;;
    "Adobe Bridge"*)
         icon_result=":adobe_bridge:"
@@ -51,6 +54,9 @@ function __icon_map() {
    "AirPort Utility")
         icon_result=":airport_utility:"
         ;;
+   "AirVPN" | "Eddie")
+        icon_result=":airvpn:"
+        ;;
    "Alacritty")
         icon_result=":alacritty:"
         ;;
@@ -63,6 +69,9 @@ function __icon_map() {
    "AmneziaVPN")
         icon_result=":amnezia_vpn:"
         ;;
+   "BlueStacks" | "HD-MultiInstanceManager")
+        icon_result=":android:"
+        ;;
    "Android Messages")
         icon_result=":android_messages:"
         ;;
@@ -72,7 +81,7 @@ function __icon_map() {
    "Anki")
         icon_result=":anki:"
         ;;
-   "Antigravity")
+   "Antigravity" | "Antigravity IDE")
         icon_result=":antigravity:"
         ;;
    "AnyDesk")
@@ -80,6 +89,9 @@ function __icon_map() {
         ;;
    "Anytype")
         icon_result=":anytype:"
+        ;;
+   "ApiArk")
+        icon_result=":apiark:"
         ;;
    "Apifox")
         icon_result=":apifox:"
@@ -90,8 +102,14 @@ function __icon_map() {
    "App Store")
         icon_result=":app_store:"
         ;;
-   "Books" | "Apple Books")
+   "Apple Books" | "Books" | "Bücher")
         icon_result=":apple_books:"
+        ;;
+   "Apple Configurator")
+        icon_result=":apple_configurator:"
+        ;;
+   "TV")
+        icon_result=":apple_tv:"
         ;;
    "Arc")
         icon_result=":arc:"
@@ -108,8 +126,20 @@ function __icon_map() {
    "Audacity")
         icon_result=":audacity:"
         ;;
+   "Audio MIDI Setup")
+        icon_result=":audio_midi_setup:"
+        ;;
    "Automator")
         icon_result=":automator:"
+        ;;
+   "Azahar")
+        icon_result=":azahar:"
+        ;;
+   "Backblaze" | "Backblaze Downloader" | "Backblaze Restore")
+        icon_result=":backblaze:"
+        ;;
+   "BaiduNetdisk" | "百度网盘")
+        icon_result=":baidunetdisk:"
         ;;
    "balenaEtcher")
         icon_result=":balena_etcher:"
@@ -120,17 +150,32 @@ function __icon_map() {
    "MoneyMoney")
         icon_result=":bank:"
         ;;
+   "Basecamp" | "Basecamp.app")
+        icon_result=":basecamp:"
+        ;;
    "Battle.net")
         icon_result=":battle_net:"
+        ;;
+   "Bazaar")
+        icon_result=":bazaar:"
         ;;
    "Bazecor")
         icon_result=":bazecor:"
         ;;
+   "BBEdit")
+        icon_result=":bbedit:"
+        ;;
    "Bear")
         icon_result=":bear:"
         ;;
+   "Beekeeper Studio")
+        icon_result=":beekeeper_studio:"
+        ;;
    "Beeper" | "Beeper Desktop")
         icon_result=":beeper:"
+        ;;
+   "Betterbird")
+        icon_result=":betterbird:"
         ;;
    "BetterTouchTool")
         icon_result=":bettertouchtool:"
@@ -141,20 +186,29 @@ function __icon_map() {
    "Bitwarden")
         icon_result=":bit_warden:"
         ;;
+   "Bitwig Studio")
+        icon_result=":bitwig_studio:"
+        ;;
    "Blender")
         icon_result=":blender:"
         ;;
    "Blitzit")
         icon_result=":blitzit:"
         ;;
-   "Bluetooth File Exchange")
-        icon_result=":bluetooth_file_exchange:"
+   "Bluesky" | "Sky")
+        icon_result=":bluesky:"
+        ;;
+   "Bluetooth File Exchange" | "Bluetooth")
+        icon_result=":bluetooth:"
         ;;
    "BluOS Controller")
         icon_result=":bluos_controller:"
         ;;
-   "Books" | "Calibre" | "Bücher")
+   "Calibre" | "Книги")
         icon_result=":book:"
+        ;;
+   "YABA" | "Anybox" | "URL Manager Pro")
+        icon_result=":bookmark:"
         ;;
    "Brain.fm")
         icon_result=":brainfm:"
@@ -177,10 +231,13 @@ function __icon_map() {
    "BusyCal")
         icon_result=":busycal:"
         ;;
-   "Calculator" | "Calculette" | "Rechner")
+   "Buzz")
+        icon_result=":buzz:"
+        ;;
+   "Calculator" | "Calculette" | "Rechner" | "Калькулятор")
         icon_result=":calculator:"
         ;;
-   "Calendar" | "日历" | "Fantastical" | "Cron" | "Amie" | "Calendrier" | "カレンダー" | "Notion Calendar" | "Kalender")
+   "Calendar" | "日历" | "Fantastical" | "Cron" | "Amie" | "Calendrier" | "カレンダー" | "Notion Calendar" | "Kalender" | "Календар" | "Календарь")
         icon_result=":calendar:"
         ;;
    "calibre")
@@ -192,10 +249,13 @@ function __icon_map() {
    "Caprine")
         icon_result=":caprine:"
         ;;
+   "ChatGPT Atlas")
+        icon_result=":chatgpt_atlas:"
+        ;;
    "Cherry Studio")
         icon_result=":cherry_studio:"
         ;;
-   "Chess")
+   "Chess" | "The Enemy Within")
         icon_result=":chess:"
         ;;
    "Amazon Chime")
@@ -206,6 +266,9 @@ function __icon_map() {
         ;;
    "Cisco AnyConnect Secure Mobility Client" | "Cisco Secure Client")
         icon_result=":cisco_anyconnect:"
+        ;;
+   "Citra")
+        icon_result=":citra:"
         ;;
    "Citrix Workspace" | "Citrix Viewer")
         icon_result=":citrix:"
@@ -219,8 +282,14 @@ function __icon_map() {
    "ClickUp")
         icon_result=":click_up:"
         ;;
+   "CLion")
+        icon_result=":clion:"
+        ;;
    "Clock")
         icon_result=":clock:"
+        ;;
+   "cmux")
+        icon_result=":cmux:"
         ;;
    "coconutBattery")
         icon_result=":coconut_battery:"
@@ -228,14 +297,23 @@ function __icon_map() {
    "Code" | "Code - Insiders")
         icon_result=":code:"
         ;;
+   "Codex")
+        icon_result=":codex:"
+        ;;
    "Cold Turkey Blocker")
         icon_result=":cold_turkey_blocker:"
         ;;
-   "Color Picker" | "数码测色计")
+   "Color Picker" | "数码测色计" | "Кольоромір" | "Цифровой колориметр" | "Digital Color Meter")
         icon_result=":color_picker:"
         ;;
    "Comet")
-        icon_result=":comet:"
+        icon_result=":comet_browser:"
+        ;;
+   "Conductor")
+        icon_result=":conductor:"
+        ;;
+   "Console")
+        icon_result=":console:"
         ;;
    "Contacts")
         icon_result=":contacts:"
@@ -252,6 +330,9 @@ function __icon_map() {
    "Creative Cloud")
         icon_result=":creative_cloud:"
         ;;
+   "CrossOver")
+        icon_result=":crossover:"
+        ;;
    "Cubase" | "Cubase Pro")
         icon_result=":cubase:"
         ;;
@@ -263,6 +344,9 @@ function __icon_map() {
         ;;
    "Cypress")
         icon_result=":cypress:"
+        ;;
+   "DaisyDisk")
+        icon_result=":daisy_disk:"
         ;;
    "Dash")
         icon_result=":dash:"
@@ -279,6 +363,9 @@ function __icon_map() {
    "DBeaver")
         icon_result=":dbeaver:"
         ;;
+   "DeepL")
+        icon_result=":deepl:"
+        ;;
    "DeepSeek")
         icon_result=":deepseek:"
         ;;
@@ -288,11 +375,20 @@ function __icon_map() {
    "Default")
         icon_result=":default:"
         ;;
+   "Default Folder X")
+        icon_result=":default_folder_x:"
+        ;;
+   "Deluge")
+        icon_result=":deluge:"
+        ;;
    "deno")
         icon_result=":deno:"
         ;;
    "CleanMyMac X")
         icon_result=":desktop:"
+        ;;
+   "Devin")
+        icon_result=":devin:"
         ;;
    "DEVONthink 3" | "DEVONthink")
         icon_result=":devonthink3:"
@@ -312,14 +408,23 @@ function __icon_map() {
    "Discord" | "Discord Canary" | "Discord PTB")
         icon_result=":discord:"
         ;;
+   "Disk Utility")
+        icon_result=":disk_utility:"
+        ;;
    "Docker" | "Docker Desktop")
         icon_result=":docker:"
         ;;
    "GrandTotal" | "Receipts")
         icon_result=":dollar:"
         ;;
+   "Dolphin")
+        icon_result=":dolphin:"
+        ;;
    "Dorico" | "Dorico Pro")
         icon_result=":dorico:"
+        ;;
+   "Dota 2")
+        icon_result=":dota2:"
         ;;
    "Double Commander")
         icon_result=":doublecmd:"
@@ -336,11 +441,23 @@ function __icon_map() {
    "Dropbox")
         icon_result=":dropbox:"
         ;;
+   "Dropover")
+        icon_result=":dropover:"
+        ;;
+   "DSM")
+        icon_result=":dsm:"
+        ;;
    "DVD Player")
         icon_result=":dvd_player:"
         ;;
+   "EA app")
+        icon_result=":ea:"
+        ;;
    "Eagle")
         icon_result=":eagle:"
+        ;;
+   "Electron")
+        icon_result=":electron:"
         ;;
    "Element")
         icon_result=":element:"
@@ -348,20 +465,29 @@ function __icon_map() {
    "Emacs")
         icon_result=":emacs:"
         ;;
+   "Epic Games Launcher")
+        icon_result=":epic_games:"
+        ;;
    "EuDic")
         icon_result=":eudic:"
         ;;
-   "Evernote Legacy")
+   "Evernote Legacy" | "Evernote")
         icon_result=":evernote_legacy:"
         ;;
    "FaceTime" | "FaceTime 通话")
         icon_result=":face_time:"
         ;;
-   "Feishu")
+   "Feedback Assistant")
+        icon_result=":feedback_assistant:"
+        ;;
+   "Feishu" | "飞书" | "飞书会议")
         icon_result=":feishu:"
         ;;
    "Figma")
         icon_result=":figma:"
+        ;;
+   "FileBot")
+        icon_result=":filebot:"
         ;;
    "FileZilla")
         icon_result=":filezilla:"
@@ -372,10 +498,10 @@ function __icon_map() {
    "Finamp")
         icon_result=":finamp:"
         ;;
-   "Find My")
+   "Find My" | "Локатор")
         icon_result=":find_my:"
         ;;
-   "Finder" | "访达" | "Bloom")
+   "Finder" | "访达" | "Bloom" | "FlowFinder")
         icon_result=":finder:"
         ;;
    "Firefox")
@@ -384,17 +510,29 @@ function __icon_map() {
    "Firefox Developer Edition" | "Firefox Nightly")
         icon_result=":firefox_developer_edition:"
         ;;
+   "Flaresolverr")
+        icon_result=":flaresolverr:"
+        ;;
    "Floorp")
         icon_result=":floorp:"
         ;;
+   "FlowJo")
+        icon_result=":flowjo:"
+        ;;
    "FL Studio")
         icon_result=":flstudio:"
+        ;;
+   "Fluxer")
+        icon_result=":fluxer:"
         ;;
    "FMOD Studio")
         icon_result=":fmod:"
         ;;
    "Folx")
         icon_result=":folx:"
+        ;;
+   "Font Book")
+        icon_result=":font_book:"
         ;;
    "foobar2000")
         icon_result=":foobar2000:"
@@ -408,11 +546,17 @@ function __icon_map() {
    "Foxit PDF Reader")
         icon_result=":foxit_reader:"
         ;;
+   "FreeLLMAPI")
+        icon_result=":free_llm_api:"
+        ;;
    "FreeCAD")
         icon_result=":freecad:"
         ;;
    "Freeform")
         icon_result=":freeform:"
+        ;;
+   "Freenet")
+        icon_result=":freenet:"
         ;;
    "FreeTube")
         icon_result=":freetube:"
@@ -426,11 +570,14 @@ function __icon_map() {
    "Games")
         icon_result=":games:"
         ;;
-   "System Preferences" | "System Settings" | "系统设置" | "Réglages Système" | "システム設定" | "Systemeinstellungen" | "System­einstellungen")
+   "System Preferences" | "System Settings" | "系统设置" | "Réglages Système" | "システム設定" | "Systemeinstellungen" | "System­einstellungen" | "Системні параметри" | "Системные настройки")
         icon_result=":gear:"
         ;;
    "Gemini" | "Google Gemini")
         icon_result=":gemini:"
+        ;;
+   "Ghidra")
+        icon_result=":ghidra:"
         ;;
    "Ghostty")
         icon_result=":ghostty:"
@@ -438,11 +585,17 @@ function __icon_map() {
    "GIMP")
         icon_result=":gimp:"
         ;;
-   "GitHub Desktop")
+   "GitHub Desktop" | "GitHub Copilot")
         icon_result=":git_hub:"
+        ;;
+   "GitKraken")
+        icon_result=":gitkraken:"
         ;;
    "Godot")
         icon_result=":godot:"
+        ;;
+   "GOG Galaxy")
+        icon_result=":gog_galaxy:"
         ;;
    "GoLand")
         icon_result=":goland:"
@@ -459,11 +612,20 @@ function __icon_map() {
    "Chromium" | "Google Chrome" | "Google Chrome Canary")
         icon_result=":google_chrome:"
         ;;
+   "Google Drive")
+        icon_result=":google_drive:"
+        ;;
+   "Google Earth Pro" | "Google Earth")
+        icon_result=":google_earth:"
+        ;;
    "Grammarly Editor")
         icon_result=":grammarly:"
         ;;
    "Granola")
         icon_result=":granola:"
+        ;;
+   "Grapher")
+        icon_result=":grapher:"
         ;;
    "Grayjay")
         icon_result=":grayjay:"
@@ -483,6 +645,9 @@ function __icon_map() {
    "Helium")
         icon_result=":helium:"
         ;;
+   "Hermes" | "Hermes Agent" | "Hermes Agent Desktop" | "Hermes Agent"*)
+        icon_result=":hermes_agent:"
+        ;;
    "Hex Fiend")
         icon_result=":hex_fiend:"
         ;;
@@ -492,8 +657,20 @@ function __icon_map() {
    "Home Assistant")
         icon_result=":home_assistant:"
         ;;
+   "brew-browser" | "WailBrew"| "TapHouse" | "Cork" | "Homebrew" | "Brewer X" | "Applite" | "BrewMate" | "Brewlet")
+        icon_result=":homebrew:"
+        ;;
    "Hyper")
         icon_result=":hyper:"
+        ;;
+   "Hyperkey")
+        icon_result=":hyperkey:"
+        ;;
+   "iA Writer")
+        icon_result=":ia_writer:"
+        ;;
+   "Ice Cubes")
+        icon_result=":ice_cubes:"
         ;;
    "IntelliJ IDEA")
         icon_result=":idea:"
@@ -525,8 +702,17 @@ function __icon_map() {
    "Insomnia")
         icon_result=":insomnia:"
         ;;
+   "Instagram")
+        icon_result=":instagram:"
+        ;;
    "Instapaper")
         icon_result=":instapaper:"
+        ;;
+   "Instruments")
+        icon_result=":instruments:"
+        ;;
+   "Invoice Ninja" | "InvoiceNinja" | "Invoice Ninja"* | "invoiceninja"*)
+        icon_result=":invoice_ninja:"
         ;;
    "iPhone Mirroring")
         icon_result=":iphone_mirroring:"
@@ -540,14 +726,20 @@ function __icon_map() {
    "Product Portal" | "iZotope RX 9" | "iZotope RX 10" | "iZotope RX 11" | "iZotope RX 12" | "iZotope Ozone 9" | "iZotope Ozone 10" | "iZotope Ozone 11" | "iZotope Ozone 12")
         icon_result=":izotope:"
         ;;
+   "Jan")
+        icon_result=":jan:"
+        ;;
    "Jane Reader")
         icon_result=":jane_reader:"
         ;;
    "JDownloader" | "JDownloader2" | "Uninstall JDownloader")
         icon_result=":jdownloader:"
         ;;
-   "Jellyfin Media Player")
+   "Jellyfin Media Player" | "Jellyfin Desktop")
         icon_result=":jellyfin:"
+        ;;
+   "Jellyseer")
+        icon_result=":jellyseer:"
         ;;
    "JetBrains Gateway")
         icon_result=":jetbrains_gateway:"
@@ -555,11 +747,17 @@ function __icon_map() {
    "JetBrains Toolbox")
         icon_result=":jetbrains_toolbox:"
         ;;
+   "Jira")
+        icon_result=":jira:"
+        ;;
    "Joplin")
         icon_result=":joplin:"
         ;;
    "Journal")
         icon_result=":journal:"
+        ;;
+   "JuxtaText")
+        icon_result=":juxtatext:"
         ;;
    "카카오톡" | "KakaoTalk")
         icon_result=":kakaotalk:"
@@ -579,6 +777,9 @@ function __icon_map() {
    "Keyboard Maestro")
         icon_result=":keyboard_maestro:"
         ;;
+   "Keychain Access")
+        icon_result=":keychain_access:"
+        ;;
    "Keynote" | "Keynote 讲演")
         icon_result=":keynote:"
         ;;
@@ -591,20 +792,35 @@ function __icon_map() {
    "kitty")
         icon_result=":kitty:"
         ;;
+   "KiwiDesk")
+        icon_result=":kiwidesk:"
+        ;;
    "Kodi")
         icon_result=":kodi:"
+        ;;
+   "krita")
+        icon_result=":krita:"
         ;;
    "LanguageTool for Desktop")
         icon_result=":languagetool_for_desktop:"
         ;;
+   "Latest")
+        icon_result=":latest:"
+        ;;
    "League of Legends")
         icon_result=":league_of_legends:"
+        ;;
+   "legcord" | "Legcord")
+        icon_result=":legcord:"
         ;;
    "LibreWolf")
         icon_result=":libre_wolf:"
         ;;
    "LibreOffice")
         icon_result=":libreoffice:"
+        ;;
+   "Lidarr")
+        icon_result=":lidarr:"
         ;;
    "Adobe Lightroom")
         icon_result=":lightroom:"
@@ -627,6 +843,9 @@ function __icon_map() {
    "LM Studio")
         icon_result=":lm_studio:"
         ;;
+   "LobeHub")
+        icon_result=":lobehub:"
+        ;;
    "LocalSend")
         icon_result=":localsend:"
         ;;
@@ -636,13 +855,28 @@ function __icon_map() {
    "Logseq")
         icon_result=":logseq:"
         ;;
+   "LuLu")
+        icon_result=":lulu:"
+        ;;
    "Maccy")
         icon_result=":maccy_clip:"
+        ;;
+   "MacForge")
+        icon_result=":macforge:"
         ;;
    "MacPass")
         icon_result=":macpass:"
         ;;
-   "Canary Mail" | "HEY" | "Mail" | "Mailspring" | "MailMate" | "Superhuman" | "Spark" | "Spark Mail" | "邮件" | "メール")
+   "macshot" | "macshot.app" | "MacShot")
+        icon_result=":macshot:"
+        ;;
+   "Mactracker")
+        icon_result=":mactracker:"
+        ;;
+   "Magnifier")
+        icon_result=":magnifier:"
+        ;;
+   "Canary Mail" | "HEY" | "Mail" | "Mailspring" | "MailMate" | "Superhuman" | "Spark" | "Spark Mail" | "邮件" | "メール" | "Пошта" | "Почта")
         icon_result=":mail:"
         ;;
    "MakeMKV")
@@ -651,7 +885,7 @@ function __icon_map() {
    "MAMP" | "MAMP PRO")
         icon_result=":mamp:"
         ;;
-   "Maps" | "Google Maps" | "マップ" | "Karten")
+   "Maps" | "Google Maps" | "マップ" | "Karten" | "Карти" | "Карты")
         icon_result=":maps:"
         ;;
    "Marked 2")
@@ -666,10 +900,16 @@ function __icon_map() {
    "Mattermost")
         icon_result=":mattermost:"
         ;;
+   "MediaInfo")
+        icon_result=":mediainfo:"
+        ;;
    "Google Meet")
         icon_result=":meet:"
         ;;
-   "Messages" | "信息" | "Nachrichten" | "メッセージ")
+   "MEGA")
+        icon_result=":mega:"
+        ;;
+   "Messages" | "信息" | "Nachrichten" | "メッセージ" | "Повідомлення" | "Сообщения")
         icon_result=":messages:"
         ;;
    "Messenger")
@@ -696,6 +936,9 @@ function __icon_map() {
    "Microsoft Word")
         icon_result=":microsoft_word:"
         ;;
+   "Migaku")
+        icon_result=":migaku:"
+        ;;
    "Mimestream")
         icon_result=":mimestream:"
         ;;
@@ -707,6 +950,9 @@ function __icon_map() {
         ;;
    "Miro")
         icon_result=":miro:"
+        ;;
+   "Mole")
+        icon_result=":mole:"
         ;;
    "MongoDB Compass"*)
         icon_result=":mongodb:"
@@ -720,8 +966,17 @@ function __icon_map() {
    "Movist Pro")
         icon_result=":movist_pro:"
         ;;
+   "Mp3tag")
+        icon_result=":mp3tag:"
+        ;;
    "mpv")
         icon_result=":mpv:"
+        ;;
+   "MQTTX")
+        icon_result=":mqttx:"
+        ;;
+   "MTGA")
+        icon_result=":mtga:"
         ;;
    "Mullvad Browser")
         icon_result=":mullvad_browser:"
@@ -732,10 +987,10 @@ function __icon_map() {
    "MuseHub")
         icon_result=":musehub:"
         ;;
-   "MuseScore")
+   "MuseScore" | "MuseScore 4" | "MuseScore Studio")
         icon_result=":musescore:"
         ;;
-   "Music" | "音乐" | "Musique" | "ミュージック" | "Musik" | "Chromatix")
+   "Music" | "音乐" | "Musique" | "ミュージック" | "Musik" | "Chromatix" | "Музика" | "Музыка")
         icon_result=":music:"
         ;;
    "Native Access")
@@ -783,7 +1038,7 @@ function __icon_map() {
    "Notability")
         icon_result=":notability:"
         ;;
-   "Notes" | "备忘录" | "メモ" | "Notizen")
+   "Notes" | "备忘录" | "メモ" | "Notizen" | "Нотатки" | "Заметки")
         icon_result=":notes:"
         ;;
    "Notion")
@@ -804,26 +1059,53 @@ function __icon_map() {
    "Nvidia GeForce Now" | "GeForceNOW")
         icon_result=":nvidia_geforce_now:"
         ;;
+   "Nzbget")
+        icon_result=":nzbget:"
+        ;;
    "Obsidian")
         icon_result=":obsidian:"
         ;;
    "OBS")
         icon_result=":obsstudio:"
         ;;
+   "Ollama")
+        icon_result=":ollama:"
+        ;;
+   "OmniDiskSweeper")
+        icon_result=":omni_disk_sweeper:"
+        ;;
    "OmniFocus")
         icon_result=":omni_focus:"
+        ;;
+   "OmniRoute")
+        icon_result=":omniroute:"
         ;;
    "1Password")
         icon_result=":one_password:"
         ;;
+   "OneDrive")
+        icon_result=":onedrive:"
+        ;;
+   "ONLYOFFICE")
+        icon_result=":onlyoffice:"
+        ;;
    "Open Video Downloader")
         icon_result=":open_video_downloader:"
         ;;
-   "ChatGPT")
+   "ChatGPT" | "ChatGPT Classic")
         icon_result=":openai:"
         ;;
    "OpenAI Translator")
         icon_result=":openai_translator:"
+        ;;
+   "OpenChamber")
+        icon_result=":openchamber:"
+        ;;
+   "opencode" | "OpenCode")
+        icon_result=":opencode:"
+        ;;
+   "OpenEmu")
+        icon_result=":openemu:"
         ;;
    "OpenVPN Connect")
         icon_result=":openvpn_connect:"
@@ -840,11 +1122,17 @@ function __icon_map() {
    "Orion" | "Orion RC")
         icon_result=":orion:"
         ;;
+   "Osaurus")
+        icon_result=":osaurus:"
+        ;;
    "Overcast")
         icon_result=":overcast:"
         ;;
    "Overleaf" | "ShareLaTeX")
         icon_result=":overleaf:"
+        ;;
+   "Overseer" | "Seer")
+        icon_result=":overseer:"
         ;;
    "Pages" | "Pages 文稿")
         icon_result=":pages:"
@@ -861,8 +1149,17 @@ function __icon_map() {
    "Passepartout")
         icon_result=":passepartout:"
         ;;
-   "Passwords" | "Passwörter")
+   "Password Depot")
+        icon_result=":password_depot:"
+        ;;
+   "AutoFillPanelService" | "coreautha" | "Passwords" | "Passwörter" | "Паролі" | "Пароли")
         icon_result=":passwords:"
+        ;;
+   "PasteBar")
+        icon_result=":pastebar:"
+        ;;
+   "PCSX2")
+        icon_result=":pcsx2:"
         ;;
    "PDF Expert")
         icon_result=":pdf_expert:"
@@ -870,8 +1167,14 @@ function __icon_map() {
    "Pearcleaner")
         icon_result=":pearcleaner:"
         ;;
+   "Permute 3" | "Permute 4")
+        icon_result=":permute:"
+        ;;
    "Perplexity" | "Perplexity AI")
         icon_result=":perplexity:"
+        ;;
+   "pgAdmin 4")
+        icon_result=":pgadmin:"
         ;;
    "Phoenix Slides")
         icon_result=":phoenix_slides:"
@@ -879,7 +1182,7 @@ function __icon_map() {
    "Phone")
         icon_result=":phone:"
         ;;
-   "Photos" | "Fotos")
+   "Photos" | "Fotos" | "Фото")
         icon_result=":photos:"
         ;;
    "Adobe Photoshop"*)
@@ -894,8 +1197,17 @@ function __icon_map() {
    "Pine")
         icon_result=":pine:"
         ;;
+   "Pinta")
+        icon_result=":pinta:"
+        ;;
+   "Pixcall")
+        icon_result=":pixcall:"
+        ;;
    "Pixelmator Pro")
         icon_result=":pixelmator_pro:"
+        ;;
+   "PixiEditor")
+        icon_result=":pixieditor:"
         ;;
    "Play")
         icon_result=":play:"
@@ -906,7 +1218,10 @@ function __icon_map() {
    "Plexamp")
         icon_result=":plexamp:"
         ;;
-   "Podcasts" | "播客")
+   "Plezy")
+        icon_result=":plezy:"
+        ;;
+   "Podcasts" | "播客" | "Подкасти" | "Подкасты")
         icon_result=":podcasts:"
         ;;
    "PomoDone App")
@@ -918,11 +1233,17 @@ function __icon_map() {
    "Premiere" | "Adobe Premiere" | "Adobe Premiere Pro 2024")
         icon_result=":premiere:"
         ;;
-   "Preview" | "预览" | "Skim" | "zathura" | "Aperçu" | "プレビュー" | "Vorschau")
+   "Preview" | "预览" | "Skim" | "zathura" | "Aperçu" | "プレビュー" | "Vorschau" | "Оглядач" | "Просмотр")
         icon_result=":preview:"
+        ;;
+   "Print Center" | "Druckzentrale")
+        icon_result=":print_center:"
         ;;
    "Pro Tools")
         icon_result=":pro_tools:"
+        ;;
+   "Problem Reporter")
+        icon_result=":problem_reporter:"
         ;;
    "Proton Mail" | "Proton Mail Bridge")
         icon_result=":proton_mail:"
@@ -930,11 +1251,17 @@ function __icon_map() {
    "Proton VPN" | "ProtonVPN")
         icon_result=":proton_vpn:"
         ;;
+   "Prowlarr")
+        icon_result=":prowlarr:"
+        ;;
    "Proxyman")
         icon_result=":proxyman:"
         ;;
    "PrusaSlicer" | "SuperSlicer")
         icon_result=":prusaslicer:"
+        ;;
+   "PS Remote Play")
+        icon_result=":ps_remote_play:"
         ;;
    "PyCharm")
         icon_result=":pycharm:"
@@ -942,11 +1269,17 @@ function __icon_map() {
    "qBittorrent")
         icon_result=":qbittorrent:"
         ;;
+   "QBZ")
+        icon_result=":qbz:"
+        ;;
    "QGIS")
         icon_result=":qgis:"
         ;;
    "QLMarkdown")
         icon_result=":qlmarkdown:"
+        ;;
+   "Qobuz")
+        icon_result=":qobuz:"
         ;;
    "QQ")
         icon_result=":qq:"
@@ -957,6 +1290,9 @@ function __icon_map() {
    "Quantumult X")
         icon_result=":quantumult_x:"
         ;;
+   "Quark" | "夸克")
+        icon_result=":quark:"
+        ;;
    "QuickTime Player")
         icon_result=":quicktime:"
         ;;
@@ -966,14 +1302,23 @@ function __icon_map() {
    "qutebrowser")
         icon_result=":qute_browser:"
         ;;
+   "Radarr")
+        icon_result=":radarr:"
+        ;;
    "Raindrop.io")
         icon_result=":raindrop_io:"
         ;;
    "Raspberry Pi Imager" | "Raspberry Pi Connect")
         icon_result=":raspberry_pi:"
         ;;
-   "Raycast")
+   "Raycast" | "Raycast Beta")
         icon_result=":raycast:"
+        ;;
+   "rclone" | "Rclone" | "Rclone UI")
+        icon_result=":rclone:"
+        ;;
+   "REAPER")
+        icon_result=":reaper:"
         ;;
    "Reeder")
         icon_result=":reeder5:"
@@ -984,8 +1329,11 @@ function __icon_map() {
    "Remind Faster")
         icon_result=":remind_me_faster:"
         ;;
-   "Reminders" | "提醒事项" | "Rappels" | "リマインダー" | "Erinnerungen")
+   "Reminders" | "提醒事项" | "Rappels" | "リマインダー" | "Erinnerungen" | "Нагадування" | "Напоминания")
         icon_result=":reminders:"
+        ;;
+   "RenameMyTVSeries" | "Rename My TV Series")
+        icon_result=":rename_my_tv_series:"
         ;;
    "Replit")
         icon_result=":replit:"
@@ -993,11 +1341,17 @@ function __icon_map() {
    "Repo Prompt")
         icon_result=":repo_prompt:"
         ;;
+   "Resilio Sync")
+        icon_result=":resilio_sync:"
+        ;;
    "Rider" | "JetBrains Rider")
         icon_result=":rider:"
         ;;
    "Rio")
         icon_result=":rio:"
+        ;;
+   "Roblox")
+        icon_result=":roblox:"
         ;;
    "Royal TSX")
         icon_result=":royaltsx:"
@@ -1005,17 +1359,38 @@ function __icon_map() {
    "RStudio")
         icon_result=":rstudio:"
         ;;
+   "RsyncUI")
+        icon_result=":rsyncui:"
+        ;;
+   "ruffle" | "Ruffle")
+        icon_result=":ruffle:"
+        ;;
    "RustDesk")
         icon_result=":rustdesk:"
+        ;;
+   "SABnzbd")
+        icon_result=":sabnzbd:"
         ;;
    "Safari" | "Safari浏览器" | "Safari Technology Preview")
         icon_result=":safari:"
         ;;
+   "Screencap")
+        icon_result=":screencap:"
+        ;;
    "Scribus")
         icon_result=":scribus:"
         ;;
+   "Script Debugger")
+        icon_result=":script_debugger:"
+        ;;
+   "Script Editor")
+        icon_result=":script_editor:"
+        ;;
    "Seafile")
         icon_result=":seafile:"
+        ;;
+   "Secretive" | "Secretive.app")
+        icon_result=":secretive:"
         ;;
    "Sequel Ace")
         icon_result=":sequel_ace:"
@@ -1029,13 +1404,13 @@ function __icon_map() {
    "Setapp")
         icon_result=":setapp:"
         ;;
-   "SF Symbols" | "SF Symbole" | "SF-Symbole")
+   "SF Symbols" | "SF Symbole" | "SF-Symbole" |  "SF Symbols Beta")
         icon_result=":sf_symbols:"
         ;;
    "Shapr3D")
         icon_result=":shapr3d:"
         ;;
-   "Shortcuts")
+   "Shortcuts" | "Команди" | "Команды")
         icon_result=":shortcuts:"
         ;;
    "Sibelius")
@@ -1047,6 +1422,9 @@ function __icon_map() {
    "sioyek")
         icon_result=":sioyek:"
         ;;
+   "Siri")
+        icon_result=":siri:"
+        ;;
    "Sketch")
         icon_result=":sketch:"
         ;;
@@ -1056,14 +1434,29 @@ function __icon_map() {
    "Slack")
         icon_result=":slack:"
         ;;
+   "SmartGit")
+        icon_result=":smartgit:"
+        ;;
+   "SnapGene")
+        icon_result=":snapgene:"
+        ;;
    "SnippetsLab")
         icon_result=":snippetslab:"
         ;;
    "solidtime")
         icon_result=":solidtime:"
         ;;
+   "Sonarr")
+        icon_result=":sonarr:"
+        ;;
+   "Sourcetree")
+        icon_result=":sourcetree:"
+        ;;
    "Spark Desktop")
         icon_result=":spark:"
+        ;;
+   "Sparkle")
+        icon_result=":sparkle:"
         ;;
    "Spotify")
         icon_result=":spotify:"
@@ -1071,11 +1464,20 @@ function __icon_map() {
    "Spotlight")
         icon_result=":spotlight:"
         ;;
+   "StarUML")
+        icon_result=":staruml:"
+        ;;
    "Steam" | "Steam Helper")
         icon_result=":steam:"
         ;;
    "Stickies")
         icon_result=":stickies:"
+        ;;
+   "Stocks")
+        icon_result=":stocks:"
+        ;;
+   "Stremio")
+        icon_result=":stremio:"
         ;;
    "Studio 3T")
         icon_result=":studio_3t:"
@@ -1089,8 +1491,8 @@ function __icon_map() {
    "Summoners War")
         icon_result=":summoners_war:"
         ;;
-   "superProductivity")
-        icon_result=":superproductivity:"
+   "Super Productivity" | "superProductivity")
+        icon_result=":super_productivity:"
         ;;
    "Surfshark")
         icon_result=":surfshark:"
@@ -1100,6 +1502,9 @@ function __icon_map() {
         ;;
    "Synergy")
         icon_result=":synergy:"
+        ;;
+   "System Information" | "System Profiler")
+        icon_result=":system_information:"
         ;;
    "T3 Chat")
         icon_result=":t3chat:"
@@ -1116,17 +1521,26 @@ function __icon_map() {
    "Tana")
         icon_result=":tana:"
         ;;
+   "Tautulli")
+        icon_result=":tautulli:"
+        ;;
    "TeamSpeak 3")
         icon_result=":team_speak:"
+        ;;
+   "TeamViewer")
+        icon_result=":teamviewer:"
         ;;
    "Telegram")
         icon_result=":telegram:"
         ;;
-   "Terminal" | "终端" | "ターミナル")
+   "Terminal" | "终端" | "ターミナル" | "Термінал" | "Терминал")
         icon_result=":terminal:"
         ;;
    "Termius")
         icon_result=":termius:"
+        ;;
+   "TestFlight")
+        icon_result=":testflight:"
         ;;
    "Typora")
         icon_result=":text:"
@@ -1134,17 +1548,29 @@ function __icon_map() {
    "TextEdit")
         icon_result=":textedit:"
         ;;
+   "The Sims 3" | "The Sims 4")
+        icon_result=":the_sims:"
+        ;;
    "Microsoft To Do" | "Things")
         icon_result=":things:"
         ;;
    "Thunderbird" | "Thunderbird Daily")
         icon_result=":thunderbird:"
         ;;
+   "TI Connect CE")
+        icon_result=":ti_connect_ce:"
+        ;;
    "TickTick")
         icon_result=":tick_tick:"
         ;;
    "TIDAL")
         icon_result=":tidal:"
+        ;;
+   "TigerVNC")
+        icon_result=":tigervnc:"
+        ;;
+   "Time Machine" | "TimeMachineEditor" | "TheTimeMachineMechanic")
+        icon_result=":time_machine:"
         ;;
    "Timery")
         icon_result=":timery:"
@@ -1176,14 +1602,17 @@ function __icon_map() {
    "TradingView")
         icon_result=":trading_view:"
         ;;
+   "Transmission")
+        icon_result=":transmission:"
+        ;;
    "Transmit")
         icon_result=":transmit:"
         ;;
    "Trello")
         icon_result=":trello:"
         ;;
-   "TV")
-        icon_result=":tv:"
+   "Tuple")
+        icon_result=":tuple:"
         ;;
    "Twingate")
         icon_result=":twingate:"
@@ -1191,8 +1620,14 @@ function __icon_map() {
    "Tweetbot" | "Twitter")
         icon_result=":twitter:"
         ;;
+   "UGREEN NAS")
+        icon_result=":ugreen-nas:"
+        ;;
    "Unity" | "Unity Hub")
         icon_result=":unity:"
+        ;;
+   "Usenapp")
+        icon_result=":usenapp:"
         ;;
    "UTM")
         icon_result=":utm:"
@@ -1200,8 +1635,20 @@ function __icon_map() {
    "VeraCrypt")
         icon_result=":veracrypt:"
         ;;
+   "Vesktop")
+        icon_result=":vesktop:"
+        ;;
+   "Viber")
+        icon_result=":viber:"
+        ;;
    "MacVim" | "Vim" | "VimR")
         icon_result=":vim:"
+        ;;
+   "VirtualBox")
+        icon_result=":virtualbox:"
+        ;;
+   "Visual Studio")
+        icon_result=":visual_studio:"
         ;;
    "Vivaldi")
         icon_result=":vivaldi:"
@@ -1227,11 +1674,17 @@ function __icon_map() {
    "Wave")
         icon_result=":waveterm:"
         ;;
-   "Weather" | "Wetter")
+   "Waydir")
+        icon_result=":waydir:"
+        ;;
+   "Weather" | "Wetter" | "Погода")
         icon_result=":weather:"
         ;;
    "WebStorm")
         icon_result=":web_storm:"
+        ;;
+   "WebTorrent")
+        icon_result=":webtorrent:"
         ;;
    "Webull Desktop")
         icon_result=":webull:"
@@ -1242,8 +1695,14 @@ function __icon_map() {
    "企业微信" | "WeCom")
         icon_result=":wecom:"
         ;;
+   "WeTransfer")
+        icon_result=":wetransfer:"
+        ;;
    "WezTerm" | "wezterm-gui")
         icon_result=":wezterm:"
+        ;;
+   "WhatCable")
+        icon_result=":whatcable:"
         ;;
    "WhatsApp" | "‎WhatsApp")
         icon_result=":whats_app:"
@@ -1254,8 +1713,20 @@ function __icon_map() {
    "WireGuard")
         icon_result=":wireguard:"
         ;;
+   "Wireshark")
+        icon_result=":wireshark:"
+        ;;
+   "Wispr Flow")
+        icon_result=":wispr_flow:"
+        ;;
+   "xemu")
+        icon_result=":xbox:"
+        ;;
    "Xcode")
         icon_result=":xcode:"
+        ;;
+   "XMind")
+        icon_result=":xmind:"
         ;;
    "Yaak")
         icon_result=":yaak:"
@@ -1281,10 +1752,13 @@ function __icon_map() {
    "Yuque" | "语雀")
         icon_result=":yuque:"
         ;;
+   "Z-Library")
+        icon_result=":z_library:"
+        ;;
    "Zed")
         icon_result=":zed:"
         ;;
-   "Zen" | "Zen Browser")
+   "Zen" | "Zen Browser" | "Twilight")
         icon_result=":zen_browser:"
         ;;
    "Zeplin")
@@ -1305,3 +1779,12 @@ function __icon_map() {
     esac
 }
 ### END-OF-ICON-MAP
+
+# When executed directly (not sourced), map all arguments and print space-separated results.
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    for app_name in "$@"; do
+        __icon_map "$app_name"
+        printf '%s ' "$icon_result"
+    done
+    [[ $# -gt 0 ]] && printf '\n'
+fi

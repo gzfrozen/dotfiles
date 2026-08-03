@@ -48,3 +48,13 @@ vim.filetype.add({
     ["Dockerfile.*"] = "dockerfile",
   },
 })
+
+-- For recognizing Helm templates and Helmfiles
+vim.filetype.add({
+  pattern = {
+    [".*/templates/.*%.ya?ml"] = "helm",
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.gotmpl"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})
