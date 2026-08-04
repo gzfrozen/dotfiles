@@ -1,5 +1,68 @@
 {
   "$schema": "https://opencode.ai/config.json",
+
+  // Default model for primary agents. Opus 5 = best coding quality.
+  "model": "github-copilot/claude-opus-5",
+  // Fallback for internal small tasks not covered by an explicit agent below.
+  "small_model": "github-copilot/gpt-5.6-luna",
+
+  "agent": {
+    // --- Important: expensive model, high reasoning effort ---
+    // Opus 5: $5 in / $25 out per 1M. "high" is the Anthropic default effort.
+    "build": {
+      "model": "github-copilot/claude-opus-5",
+      "variant": "high"
+    },
+    // Plan is read-only and output-light, so extra reasoning is cheap here.
+    "plan": {
+      "model": "github-copilot/claude-opus-5",
+      "variant": "xhigh"
+    },
+
+    // --- Workhorse subagent: full write access, runs long ---
+    // Sonnet 5: $2 in / $10 out per 1M (promo pricing through 2026-08-31,
+    // then reverts to ~$3 / $15). ~4x cheaper per token than Opus 5.
+    "general": {
+      "model": "github-copilot/claude-sonnet-5",
+      "variant": "high"
+    },
+
+    // --- Cheap: high-volume, low-stakes ---
+    // Luna: $0.20 in / $1.20 out per 1M (>200K input -> $0.40 / $1.80).
+    // Explore only greps/reads/reports, so file bulk never enters Opus context.
+    "explore": {
+      "model": "github-copilot/gpt-5.6-luna",
+      "variant": "medium"
+    },
+    // NOTE: compaction/summary re-read the existing session context. Sonnet 5
+    // and Terra are $2.00/M fresh input, which is 4x MORE than Opus's own
+    // $0.50/M cache read. Luna at $0.20/M is the only real saving here.
+    "compaction": {
+      "model": "github-copilot/gpt-5.6-luna",
+      "variant": "medium"
+    },
+    "summary": {
+      "model": "github-copilot/gpt-5.6-luna",
+      "variant": "low"
+    },
+    // One-shot, ~10 tokens out. "none" disables reasoning entirely.
+    "title": {
+      "model": "github-copilot/gpt-5.6-luna",
+      "variant": "none"
+    }
+  },
+
+  // Context-size levers. Cache read + write was ~91% of Opus spend, so
+  // shrinking the context base saves more than lowering reasoning effort.
+  "compaction": {
+    "auto": true,
+    "prune": true
+  },
+  "tool_output": {
+    "max_lines": 1000,
+    "max_bytes": 32768
+  },
+
   "mcp": {
     "context7": {
       "type": "remote",
