@@ -1,0 +1,19 @@
+onboarding = false
+
+[ui]
+agent_panel_sort = "spaces"
+prompt_new_tab_name = false
+prompt_new_workspace_name = false
+show_agent_labels_on_pane_borders = true
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[keys]
+prefix = "ctrl+a"
+previous_tab = "ctrl+h"
+next_tab = "ctrl+l"
+previous_workspace = "ctrl+k"
+next_workspace = "ctrl+j"
+new_tab = "ctrl+n"
+close_pane = "ctrl+w"
