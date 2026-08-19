@@ -1,4 +1,3 @@
-git:
-  diffRenderers:
-    - colorArg: always
-      command: hunk pager
+# git:
+#   diffRenderers:
+#     - command: hunk pager

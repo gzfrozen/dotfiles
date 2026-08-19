@@ -16,6 +16,7 @@
 {{end}}
 [core]
 	editor = nvim
+	pager = hunk pager
 [commit]
 	gpgsign = true
 [tag]
@@ -38,16 +39,6 @@
 [credential]
 	interactive = auto
 	helper = /usr/local/share/gcm-core/git-credential-manager
-[pager]
-    diff = hunk pager
-    show = hunk pager
-    log = hunk pager
-[diff]
-    tool = hunk
-[difftool "hunk"]
-    cmd = hunk diff \"$LOCAL\" \"$REMOTE\"
-[difftool]
-    prompt = false
 {{- if eq .chezmoi.username "gzfrozen"}}
 {{- else if eq .chezmoi.username "liux101"}}
 [credential "https://dev.azure.com"]
