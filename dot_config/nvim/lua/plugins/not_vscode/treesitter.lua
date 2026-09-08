@@ -42,7 +42,7 @@ return {
       "comment",
       "prisma",
       "nix",
-      "heml",
+      "helm",
     }
     require("nvim-treesitter").install(parsers)
 
