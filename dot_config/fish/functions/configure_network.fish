@@ -2,6 +2,7 @@ function configure_network --description "Start/stop VPN with vpnutil and config
   # Usage:
   # configure_network "<VPN_NAME>" ["<NETWORK_SERVICE>"] [--pac URL | --http host:port [--https host:port]] [--socks host:port] [--off] [--show]
   # If <NETWORK_SERVICE> is omitted, auto-detects the active/primary network service (any type: Wi‑Fi, Ethernet, USB LAN, etc.)
+  # Starting installs a managed cron job that refreshes the VPN every 20 minutes; --off removes it.
 
   function _die
     echo $argv 1>&2
@@ -9,7 +10,7 @@ function configure_network --description "Start/stop VPN with vpnutil and config
   end
 
   function _need
-    for cmd in vpnutil networksetup awk sed route
+    for cmd in vpnutil networksetup awk sed route crontab
       if not command -q $cmd
         _die "Missing required command: $cmd (install or add to PATH)"
         return 1
@@ -22,6 +23,39 @@ function configure_network --description "Start/stop VPN with vpnutil and config
     eval $argv
     if test $status -ne 0
       _die "Command failed: $argv"
+      return 1
+    end
+  end
+
+  function _update_refresh_cron --argument-names action vpn_name
+    set -l marker '# configure_network-vpn-refresh'
+    set -l existing (crontab -l 2>/dev/null)
+    set -l kept
+
+    for line in $existing
+      if not string match -q "*$marker*" -- $line
+        set -a kept $line
+      end
+    end
+
+    if test "$action" = install
+      if string match -qr '[\r\n]' -- "$vpn_name"
+        _die 'VPN name must not contain a newline'
+        return 1
+      end
+
+      set -l escaped_vpn_name (string escape --style=script -- "$vpn_name")
+      set -a kept "*/20 * * * * PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin; /opt/homebrew/bin/vpnutil stop $escaped_vpn_name >/dev/null 2>&1; /bin/sleep 2; /opt/homebrew/bin/vpnutil start $escaped_vpn_name >/dev/null 2>&1 $marker"
+    end
+
+    begin
+      for line in $kept
+        printf '%s\n' $line
+      end
+    end | crontab -
+
+    if test $pipestatus[-1] -ne 0
+      _die 'Failed to update the VPN refresh cron job'
       return 1
     end
   end
@@ -136,7 +170,7 @@ function configure_network --description "Start/stop VPN with vpnutil and config
     end
   end
 
-  _need vpnutil networksetup awk sed route; or return 1
+  _need vpnutil networksetup awk sed route crontab; or return 1
 
   # Auto-detect active network service if not provided
   set -l NET_SVC $USER_NET_SVC
@@ -177,6 +211,8 @@ function configure_network --description "Start/stop VPN with vpnutil and config
   end
 
   if test "$TURN_OFF" = "true"
+    echo "Removing the VPN refresh cron job"
+    _update_refresh_cron remove "$VPN_NAME"; or return 1
     echo "Turning off proxies on $NET_SVC"
     _run "networksetup -setwebproxystate \"$NET_SVC\" off"; or return 1
     _run "networksetup -setsecurewebproxystate \"$NET_SVC\" off"; or return 1
@@ -185,6 +221,8 @@ function configure_network --description "Start/stop VPN with vpnutil and config
     echo "Stopping VPN via vpnutil: $VPN_NAME"
     vpnutil stop "$VPN_NAME" >/dev/null 2>&1
   else
+    echo "Scheduling a VPN refresh every 20 minutes"
+    _update_refresh_cron install "$VPN_NAME"; or return 1
     echo "Starting VPN via vpnutil: $VPN_NAME"
     vpnutil start "$VPN_NAME" >/dev/null 2>&1
 
