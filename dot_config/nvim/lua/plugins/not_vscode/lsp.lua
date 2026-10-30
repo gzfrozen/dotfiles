@@ -163,6 +163,10 @@ return {
         },
       })
 
+      local biome_root_dir = vim.lsp.config.biome.root_dir
+      local biome_filetypes = vim.lsp.config.biome.filetypes
+      local eslint_root_dir = vim.lsp.config.eslint.root_dir
+
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -186,6 +190,32 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
+        biome = {},
+        eslint = {
+          root_dir = function(bufnr, on_dir)
+            local biome_root
+            if vim.tbl_contains(biome_filetypes, vim.bo[bufnr].filetype) then
+              -- The built-in detector resolves the root synchronously.
+              biome_root_dir(bufnr, function(root)
+                biome_root = root
+              end)
+            end
+
+            -- Biome takes priority; otherwise keep ESLint's built-in detection.
+            if not biome_root then
+              eslint_root_dir(bufnr, on_dir)
+            end
+          end,
+          settings = {
+            validate = "on",
+            run = "onType",
+            -- Conform owns formatting and automatic fixes on save.
+            format = false,
+            codeActionOnSave = {
+              enable = false,
+            },
+          },
+        },
         ts_ls = {
           init_options = {
             -- plugins = {
@@ -275,6 +305,7 @@ return {
         "eslint_d",
         "eslint-lsp",
         "csharpier",
+        "biome",
         "prismals",
         "gopls",
         "golangci-lint",

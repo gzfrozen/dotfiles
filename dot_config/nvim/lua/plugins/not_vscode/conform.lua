@@ -1,3 +1,22 @@
+local function biome_available(bufnr)
+  return require("conform").get_formatter_info("biome", bufnr).available
+end
+
+local function javascript_formatters(bufnr)
+  if biome_available(bufnr) then
+    return { "biome", lsp_format = "never" }
+  end
+
+  return { "eslint_d", "prettierd", lsp_format = "never" }
+end
+
+local web_formatters = {
+  "biome",
+  "prettierd",
+  stop_after_first = true,
+  lsp_format = "never",
+}
+
 local function ts_organize_imports(bufnr)
   if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
     return
@@ -9,7 +28,7 @@ local function ts_organize_imports(bufnr)
 
   local client = vim.lsp.get_clients({ name = "ts_ls", bufnr = bufnr })[1]
 
-  if not client then
+  if not client or biome_available(bufnr) then
     return
   end
 
@@ -54,6 +73,14 @@ local function organize_imports(bufnr)
   go_organize_imports(bufnr)
 end
 
+local function after_format(bufnr)
+  return function(err)
+    if not err and vim.api.nvim_buf_is_valid(bufnr) then
+      organize_imports(bufnr)
+    end
+  end
+end
+
 return {
   { -- Autoformat
     "stevearc/conform.nvim",
@@ -61,46 +88,58 @@ return {
     cmd = { "ConformInfo" },
     opts = {
       notify_on_error = false,
+      default_format_opts = {
+        lsp_format = "fallback",
+      },
       format_on_save = function(bufnr)
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end
-        -- Disable "format_on_save lsp_fallback" for languages that don't
+        -- Disable LSP formatting on save for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         return {
+          bufnr = bufnr,
           timeout_ms = 1000,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-          callback = organize_imports(bufnr),
-        }
+          lsp_format = disable_filetypes[vim.bo[bufnr].filetype] and "never" or nil,
+        },
+          after_format(bufnr)
       end,
       formatters_by_ft = {
         lua = { "stylua" },
         -- Conform can also run multiple formatters sequentially
         python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
-        javascript = { "eslint_d", "prettierd" },
-        javascriptreact = { "eslint_d", "prettierd" },
-        typescript = { "eslint_d", "prettierd" },
-        typescriptreact = { "eslint_d", "prettierd" },
-        json = { "prettierd" },
-        html = { "prettierd" },
-        css = { "prettierd" },
+        -- Biome is exclusive; otherwise preserve ESLint -> Prettier.
+        javascript = javascript_formatters,
+        javascriptreact = javascript_formatters,
+        typescript = javascript_formatters,
+        typescriptreact = javascript_formatters,
+        json = web_formatters,
+        jsonc = web_formatters,
+        html = web_formatters,
+        css = web_formatters,
         rust = { "rustfmt" },
         fish = { "fish_indent" },
         bash = { "shfmt" },
         go = { lsp_format = "fallback" },
+      },
+      formatters = {
+        biome = {
+          -- Require the config directory detected by Conform's built-in Biome formatter.
+          require_cwd = true,
+        },
       },
     },
     keys = {
       {
         "<leader><leader>f",
         function()
+          local bufnr = vim.api.nvim_get_current_buf()
           require("conform").format({
+            bufnr = bufnr,
             async = true,
-            lsp_fallback = true,
-            callback = organize_imports(vim.api.nvim_get_current_buf()),
-          })
+          }, after_format(bufnr))
         end,
         mode = "n",
         desc = "[F]ormat",
